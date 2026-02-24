@@ -2,36 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Plataforma Maquetas Vol. 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Maquetas Vol. 1 - Ignacio López Torres</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <nav class="sidebar">
-        <h2>MAQUETAS VOL. 1</h2>
-        <a href="portada.html">Portada</a>
-        <a href="presentacion.html">Presentación</a>
-        <a href="introduccion.html">Introducción</a>
-        <a href="cap1.html">Cap. 1: Conceptos</a>
-        <a href="cap2.html">Cap. 2: Tipos de Maquetas</a>
-        <a href="cap3.html">Cap. 3: Planos</a>
-        <a href="cap4.html">Cap. 4: Materiales</a>
-        <a href="cap5.html">Cap. 5: Herramientas</a>
-        <a href="cap6.html">Cap. 6: Técnicas de Corte</a>
-        <a href="cap7.html">Cap. 7: Escalas</a>
-        <a href="cap8.html">Cap. 8: Taller y Elaboración</a>
-        <a href="cap9.html">Cap. 9: El Ensamble</a>
-        <a href="cap10.html">Cap. 10: Acabados</a>
-        <a href="anexos.html">Anexos</a>
-        <a href="referencias.html">Referencias</a>
-        <a href="biografia.html">Biografía del Autor</a>
+        <div class="sidebar-header">
+            <h3>COLECCIÓN DORADA</h3>
+            <p>Maquetas para Principiantes</p>
+        </div>
+        <ul id="menu">
+            <li><a href="#" onclick="loadContent('portada')">Portada</a></li>
+            <li><a href="#" onclick="loadContent('presentacion')">Presentación</a></li>
+            <li class="section-title">CAPÍTULOS</li>
+            <li><a href="#" onclick="loadContent('cap1')">1. Conceptos</a></li>
+            <li><a href="#" onclick="loadContent('cap2')">2. Clasificación</a></li>
+            <li><a href="#" onclick="loadContent('cap3')">3. Planos</a></li>
+            <li><a href="#" onclick="loadContent('cap4')">4. Materiales</a></li>
+            <li><a href="#" onclick="loadContent('cap5')">5. Herramientas</a></li>
+            <li><a href="#" onclick="loadContent('cap6')">6. El Corte</a></li>
+            <li><a href="#" onclick="loadContent('cap7')">7. Escalas</a></li>
+            <li><a href="#" onclick="loadContent('cap8')">8. El Taller</a></li>
+            <li><a href="#" onclick="loadContent('cap9')">9. Ensamble</a></li>
+            <li><a href="#" onclick="loadContent('cap10')">10. Vegetación</a></li>
+            <li class="section-title">FINAL</li>
+            <li><a href="#" onclick="loadContent('anexos')">Anexos</a></li>
+            <li><a href="#" onclick="loadContent('referencias')">Referencias</a></li>
+            <li><a href="#" onclick="loadContent('biografia')">El Autor</a></li>
+        </ul>
     </nav>
 
     <main class="main-content">
-        <div id="content-frame">
-            <script>location.href="portada.html";</script>
-        </div>
+        <div id="book-content" class="card">
+            </div>
     </main>
 
+    <script src="script.js"></script>
 </body>
 </html>
