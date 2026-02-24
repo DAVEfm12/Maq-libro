@@ -1,49 +1,55 @@
-body {
-    background-color: #f4f6f9;
+body{
+    font-family: 'Segoe UI', sans-serif;
+    background:#f4f6f9;
 }
 
-.navbar {
-    z-index: 1000;
+.navbar{
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
 }
 
-.sidebar {
-    height: 100vh;
-    position: fixed;
-    top: 56px;
-    left: 0;
-    width: 250px;
-    background: #212529;
-    padding-top: 20px;
+.sidebar{
+    position:fixed;
+    top:56px;
+    left:0;
+    width:260px;
+    height:100vh;
+    background:#1e293b;
+    overflow-y:auto;
 }
 
-.sidebar a {
-    color: #fff;
-    padding: 10px 20px;
-    display: block;
-    text-decoration: none;
+.sidebar a{
+    display:block;
+    padding:12px 20px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
 }
 
-.sidebar a:hover {
-    background: #0d6efd;
+.sidebar a:hover{
+    background:#0d6efd;
 }
 
-.content {
-    margin-left: 260px;
-    padding: 30px;
+.contenido{
+    margin-left:270px;
+    padding:40px;
 }
 
-.chapter-img {
-    width: 100%;
-    height: 300px;
-    background-color: #ddd;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 20px;
+.espacio-imagen{
+    width:100%;
+    height:300px;
+    background:#ddd;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:20px 0;
+    font-weight:bold;
+    color:#555;
 }
 
-.progress {
-    height: 10px;
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
 }
