@@ -1,55 +1,87 @@
-body{
-    font-family: 'Segoe UI', sans-serif;
-    background:#f4f6f9;
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #e67e22;
+    --bg-light: #f4f7f6;
+    --text-dark: #333;
+    --white: #ffffff;
 }
 
-.navbar{
-    box-shadow:0 3px 10px rgba(0,0,0,.2);
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
 }
 
-.sidebar{
-    position:fixed;
-    top:56px;
-    left:0;
-    width:260px;
-    height:100vh;
-    background:#1e293b;
-    overflow-y:auto;
+/* Sidebar Navigation */
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background: var(--primary-color);
+    color: white;
+    position: fixed;
+    overflow-y: auto;
+    padding-top: 20px;
 }
 
-.sidebar a{
-    display:block;
-    padding:12px 20px;
-    color:white;
-    text-decoration:none;
-    font-size:14px;
+.sidebar h2 {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 0 15px 20px;
+    border-bottom: 1px solid #34495e;
 }
 
-.sidebar a:hover{
-    background:#0d6efd;
+.sidebar a {
+    display: block;
+    color: #bdc3c7;
+    padding: 12px 25px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 0.95rem;
 }
 
-.contenido{
-    margin-left:270px;
-    padding:40px;
+.sidebar a:hover, .sidebar a.active {
+    background: #34495e;
+    color: var(--accent-color);
+    border-left: 4px solid var(--accent-color);
 }
 
-.espacio-imagen{
-    width:100%;
-    height:300px;
-    background:#ddd;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:20px 0;
-    font-weight:bold;
-    color:#555;
+/* Main Content Area */
+.main-content {
+    margin-left: 280px;
+    padding: 40px;
+    width: calc(100% - 280px);
 }
 
-footer{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:20px;
-    margin-top:50px;
+.card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: auto;
+}
+
+h1, h2 { color: var(--primary-color); }
+
+.img-placeholder {
+    background: #eee;
+    border: 2px dashed #ccc;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    color: #888;
+}
+
+.btn-next {
+    background: var(--accent-color);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    float: right;
+    margin-top: 20px;
 }
