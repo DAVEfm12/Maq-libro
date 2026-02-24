@@ -3,154 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maquetas para Principiantes | Libro Interactivo</title>
-<link rel="stylesheet" href="style.css">
+<title>Plataforma Educativa | Maquetas 2026</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
 
-<div id="progressBar"></div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+<div class="container-fluid">
+<a class="navbar-brand fw-bold" href="index.html">📘 Maquetas 2026</a>
+</div>
+</nav>
 
-<div class="book">
+<div class="container mt-5 pt-5">
 
-<!-- PORTADA -->
-<section class="page cover">
-<h1>MAQUETAS PARA PRINCIPIANTES</h1>
-<h3>Teoría y Elaboración de Maquetas</h3>
-<p>Volumen I</p>
-<button onclick="nextPage()">Abrir Libro</button>
-</section>
+<div class="text-center mb-5">
+<h1 class="fw-bold">MAQUETAS PARA PRINCIPIANTES</h1>
+<p class="lead">Teoría y Elaboración de Maquetas</p>
+<p>Autor: Ignacio López Torres</p>
+</div>
 
-<!-- CRÉDITOS -->
-<section class="page">
-<h2>Créditos</h2>
-<p><strong>Autor:</strong> Ignacio López Torres 9</p>
-<p>Editorial Colección Dorada</p>
-<p>ISBN: 978-980-18-4289-7</p>
-</section>
+<div class="row g-4">
 
-<!-- DEDICATORIA -->
-<section class="page">
-<h2>Dedicatoria</h2>
-<p>A Dios, a mis padres Crescenciano y Gaudencia... 10</p>
-</section>
+<!-- CAPÍTULOS -->
 
-<!-- AGRADECIMIENTOS -->
-<section class="page">
-<h2>Agradecimientos</h2>
-<p>Expreso mis más sinceros agradecimientos... 11</p>
-</section>
+<div class="col-md-4">
+<div class="card shadow h-100">
+<div class="card-body">
+<h5 class="card-title">Capítulo I</h5>
+<p>Introducción a las maquetas</p>
+<a href="cap1.html" class="btn btn-primary">Entrar</a>
+</div>
+</div>
+</div>
 
-<!-- PRÓLOGO -->
-<section class="page">
-<h2>Prólogo</h2>
-<p>A pesar de los adelantos tecnológicos... 12</p>
-</section>
+<div class="col-md-4">
+<div class="card shadow h-100">
+<div class="card-body">
+<h5 class="card-title">Capítulo II</h5>
+<p>Historia de las maquetas</p>
+<a href="cap2.html" class="btn btn-primary">Entrar</a>
+</div>
+</div>
+</div>
 
-<!-- OBJETIVO -->
-<section class="page">
-<h2>Objetivo</h2>
-<p>Dar a conocer técnicas, materiales y herramientas... 13</p>
-</section>
+<div class="col-md-4">
+<div class="card shadow h-100">
+<div class="card-body">
+<h5 class="card-title">Capítulo III</h5>
+<p>Interpretación de planos</p>
+<a href="cap3.html" class="btn btn-primary">Entrar</a>
+</div>
+</div>
+</div>
 
-<!-- INTRODUCCIÓN -->
-<section class="page">
-<h2>Introducción</h2>
-<p>El libro se estructura de la siguiente manera... 14</p>
-</section>
-
-<!-- CAPÍTULO I -->
-<section class="page">
-<h2>Capítulo I - Introducción a las Maquetas</h2>
-<p>¿Qué es una maqueta? Representación tridimensional a escala... 15</p>
-</section>
-
-<!-- CAPÍTULO II -->
-<section class="page">
-<h2>Capítulo II - Tipos de Maquetas</h2>
-<ul>
-<li>Edificación</li>
-<li>Urbanismo</li>
-<li>Conceptuales</li>
-<li>Volumétricas</li>
-</ul>
-</section>
-
-<!-- CAPÍTULO III -->
-<section class="page">
-<h2>Capítulo III - Interpretación de Planos</h2>
-<p>Lectura de planos arquitectónicos...</p>
-</section>
-
-<!-- CAPÍTULO IV -->
-<section class="page">
-<h2>Capítulo IV - Materiales</h2>
-<p>Tipos de papel, cartón, plastilina, madera...</p>
-</section>
-
-<!-- CAPÍTULO V -->
-<section class="page">
-<h2>Capítulo V - Herramientas</h2>
-<p>Regla de acero, exacto, transportador...</p>
-</section>
-
-<!-- CAPÍTULO VI -->
-<section class="page">
-<h2>Capítulo VI - Técnicas de Corte</h2>
-<p>Nunca usar regla de plástico para cortar... 16</p>
-</section>
-
-<!-- CAPÍTULO VII -->
-<section class="page">
-<h2>Capítulo VII - Escalas y Acotaciones</h2>
-<p>Escalas 1:40, 1:100, 1:200...</p>
-</section>
-
-<!-- CAPÍTULO VIII -->
-<section class="page">
-<h2>Capítulo VIII - Elaboración de Maquetas</h2>
-<p>Ubicación de planos, base, determinación de escala... 17</p>
-</section>
-
-<!-- CAPÍTULO IX -->
-<section class="page">
-<h2>Capítulo IX - Acabados Internos y Externos</h2>
-<p>Aplicación de pegamento, pintura, texturas... 18</p>
-</section>
-
-<!-- CAPÍTULO X -->
-<section class="page">
-<h2>Capítulo X - Vegetación y Paisajismo</h2>
-<p>¿Qué es vegetación? ¿Por qué usarla?... 19</p>
-</section>
-
-<!-- ANEXOS -->
-<section class="page">
-<h2>Anexos</h2>
-<p>Material complementario del libro...</p>
-</section>
-
-<!-- REFERENCIAS -->
-<section class="page">
-<h2>Referencias Bibliográficas</h2>
-<p>Lista completa de fuentes consultadas... 20</p>
-</section>
-
-<!-- BIOGRAFÍA -->
-<section class="page">
-<h2>Biografía del Autor</h2>
-<p>Ingeniero Civil Ignacio López Torres... 21</p>
-</section>
-
-<!-- FINAL -->
-<section class="page final">
-<h2>Fin del Libro</h2>
-<p>Gracias por leer esta guía interactiva.</p>
-<button onclick="location.reload()">Volver al Inicio</button>
-</section>
+<!-- Repite mismo patrón hasta capítulo 10 -->
 
 </div>
 
-<script src="script.js"></script>
+<hr class="my-5">
+
+<div class="text-center">
+<a href="final.html" class="btn btn-success btn-lg">Final del Libro</a>
+</div>
+
+</div>
+
+<footer class="bg-dark text-white text-center p-3 mt-5">
+Plataforma Educativa 2026 | Proyecto Académico
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+
 </body>
 </html>
