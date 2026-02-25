@@ -3,43 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma Maquetas Vol. 1 - Ignacio López Torres</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Maquetas para Principiantes - Libro Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .cap-card:hover { transform: scale(1.02); transition: all 0.3s ease; }
+        .active-cap { background: #f59e0b !important; color: white !important; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 10px; }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50 flex h-screen overflow-hidden">
 
-    <nav class="sidebar">
-        <div class="sidebar-header">
-            <h3>COLECCIÓN DORADA</h3>
-            <p>Maquetas para Principiantes</p>
+    <aside class="w-80 bg-slate-900 text-white flex flex-col shadow-2xl">
+        <div class="p-8 border-b border-slate-800">
+            <h2 class="text-amber-500 font-black tracking-widest text-xs uppercase mb-1">Ignacio López Torres</h2>
+            <h1 class="text-2xl font-bold italic serif">Colección Dorada</h1>
         </div>
-        <ul id="menu">
-            <li><a href="#" onclick="loadContent('portada')">Portada</a></li>
-            <li><a href="#" onclick="loadContent('presentacion')">Presentación</a></li>
-            <li class="section-title">CAPÍTULOS</li>
-            <li><a href="#" onclick="loadContent('cap1')">1. Conceptos</a></li>
-            <li><a href="#" onclick="loadContent('cap2')">2. Clasificación</a></li>
-            <li><a href="#" onclick="loadContent('cap3')">3. Planos</a></li>
-            <li><a href="#" onclick="loadContent('cap4')">4. Materiales</a></li>
-            <li><a href="#" onclick="loadContent('cap5')">5. Herramientas</a></li>
-            <li><a href="#" onclick="loadContent('cap6')">6. El Corte</a></li>
-            <li><a href="#" onclick="loadContent('cap7')">7. Escalas</a></li>
-            <li><a href="#" onclick="loadContent('cap8')">8. El Taller</a></li>
-            <li><a href="#" onclick="loadContent('cap9')">9. Ensamble</a></li>
-            <li><a href="#" onclick="loadContent('cap10')">10. Vegetación</a></li>
-            <li class="section-title">FINAL</li>
-            <li><a href="#" onclick="loadContent('anexos')">Anexos</a></li>
-            <li><a href="#" onclick="loadContent('referencias')">Referencias</a></li>
-            <li><a href="#" onclick="loadContent('biografia')">El Autor</a></li>
-        </ul>
-    </nav>
+        
+        <nav class="flex-1 overflow-y-auto p-4 space-y-2" id="sidebar-nav">
+            </nav>
 
-    <main class="main-content">
-        <div id="book-content" class="card">
+        <div class="p-4 bg-slate-950 text-[10px] text-slate-500 text-center uppercase tracking-widest">
+            Volumen I - Teoría y Elaboración
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto bg-white relative">
+        <div id="main-content" class="max-w-4xl mx-auto py-12 px-8">
+            <div id="welcome-screen" class="text-center py-20">
+                <img src="https://images.unsplash.com/photo-1503387762-592dea58ef23?auto=format&fit=crop&q=80&w=1000" class="w-full h-80 object-cover rounded-3xl shadow-2xl mb-12">
+                <h1 class="text-6xl font-black text-slate-900 mb-4 serif">Maquetas para Principiantes</h1>
+                <p class="text-2xl text-slate-500 mb-10 font-light italic">"La maqueta es la herramienta del diseño que subordina al dibujo"</p>
+                <button onclick="irACapitulo(0)" class="bg-amber-500 hover:bg-amber-600 text-white px-12 py-4 rounded-full font-bold text-lg shadow-xl transition-all transform hover:scale-105">
+                    Comenzar Lectura
+                </button>
             </div>
+        </div>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        const capitulos = [
+            {
+                id: 1,
+                titulo: "Introducción a las Maquetas",
+                contenido: "La maqueta es la representación física, a escala, en tres dimensiones, de un proyecto arquitectónico o diseño. Es la transición necesaria entre el plano (2D) y la obra real (3D). Sirve para detectar errores antes de construir.",
+                img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800",
+                links: [{ n: "Arquitectura Hoy", u: "https://www.arquitecturahoy.com" }]
+            },
+            {
+                id: 2,
+                titulo: "Tipos de Maquetas",
+                contenido: "Se clasifican según su objetivo: <br>• <b>Urbanismo:</b> Para ver conjuntos de edificios.<br>• <b>Edificación:</b> Muestra el diseño exterior.<br>• <b>Estructuras:</b> Muestra el 'esqueleto' del edificio.<br>• <b>Virtuales:</b> Modelado por computadora.",
+                img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800",
+                links: [{ n: "Referentes de Modelismo", u: "https://www.re-arquitectura.com" }]
+            },
+            {
+                id: 3,
+                titulo: "Interpretación de Planos",
+                contenido: "Para ser maquetista hay que saber leer: <br>1. <b>Plantas:</b> Corte horizontal.<br>2. <b>Alzados:</b> Las fachadas.<br>3. <b>Cortes:</b> Vistas interiores transversales. <br>Sin entender los ejes y las cotas, la maqueta no tendrá escala.",
+                img: "https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=800",
+                links: [{ n: "BiblioCAD (Planos Gratis)", u: "https://www.bibliocad.com" }]
+            },
+            {
+                id: 4,
+                titulo: "Materiales",
+                contenido: "Los más usados son: Papel ilustración, cartón batería, madera balsa, mica (para vidrios) y pegamentos como UHU o silicón frío. Se recomienda reciclar materiales para maquetas de estudio.",
+                img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800",
+                links: [{ n: "Lumen (Catálogo de Papeles)", u: "https://www.lumen.com.mx" }]
+            },
+            {
+                id: 5,
+                titulo: "Herramientas Necesarias",
+                contenido: "Un equipo básico incluye: Regla de acero (no de plástico), escuadras, cúter o exacto, portaminas, y una base de corte para proteger la mesa.",
+                img: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?q=80&w=800",
+                links: [{ n: "Stanley Tools", u: "https://www.stanleytools.com" }]
+            },
+            {
+                id: 6,
+                titulo: "Técnicas de Corte Manual",
+                contenido: "El autor enfatiza que la navaja debe estar siempre afilada. Para un corte limpio, pasa la navaja tres veces suavemente en lugar de una vez con mucha presión. El ángulo ideal es de 45 grados.",
+                img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=800",
+                links: [{ n: "Tips de Corte (YouTube)", u: "https://www.youtube.com/results?search_query=maquetas+corte" }]
+            },
+            {
+                id: 7,
+                titulo: "Escalas y Acotaciones",
+                contenido: "La escala es la relación matemática. <br>• <b>1:100</b> (1cm = 1m)<br>• <b>1:50</b> (2cm = 1m). <br>Es vital usar el escalímetro correctamente para no deformar el proyecto.",
+                img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800",
+                links: [{ n: "Calculadora de Escala", u: "https://www.pichiscalculator.com" }]
+            },
+            {
+                id: 8,
+                titulo: "Elaboración Paso a Paso",
+                contenido: "Comienza por la base, luego coloca los pisos, seguido de los muros de carga y finalmente los cerramientos. Usa alfileres para sostener las piezas mientras seca el pegamento.",
+                img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=800",
+                links: [{ n: "ArchDaily (Ejemplos)", u: "https://www.archdaily.mx" }]
+            },
+            {
+                id: 9,
+                titulo: "Acabados y Texturas",
+                contenido: "Puedes crear texturas de ladrillo rayando el cartón, o concreto usando pintura acrílica gris con una esponja. El cristal se representa con acetato o mica transparente.",
+                img: "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=800",
+                links: [{ n: "Pinterest Texturas", u: "https://www.pinterest.com/search/posts/?q=model+textures" }]
+            },
+            {
+                id: 10,
+                titulo: "Vegetación o Paisajismo",
+                contenido: "Este es el toque final. Usa esponjas pintadas de verde para arbustos y ramas secas de árboles reales para dar realismo a la escala humana y el entorno.",
+                img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800",
+                links: [{ n: "Scenery Express", u: "https://www.sceneryexpress.com" }]
+            }
+        ];
+
+        function generarMenu() {
+            const nav = document.getElementById('sidebar-nav');
+            capitulos.forEach((cap, index) => {
+                const btn = document.createElement('button');
+                btn.id = `btn-${index}`;
+                btn.className = "w-full text-left p-4 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition-all flex items-center gap-3";
+                btn.innerHTML = `<span class="bg-slate-800 text-amber-500 w-8 h-8 rounded-lg flex items-center justify-center font-bold">${cap.id}</span> ${cap.titulo}`;
+                btn.onclick = () => irACapitulo(index);
+                nav.appendChild(btn);
+            });
+        }
+
+        function irACapitulo(index) {
+            const cap = capitulos[index];
+            const content = document.getElementById('main-content');
+            
+            // Actualizar botones menú
+            document.querySelectorAll('#sidebar-nav button').forEach(b => b.classList.remove('active-cap'));
+            document.getElementById(`btn-${index}`).classList.add('active-cap');
+
+            // Renderizar contenido
+            content.innerHTML = `
+                <div class="animate-in fade-in slide-in-from-bottom-5 duration-700">
+                    <div class="relative h-96 w-full rounded-3xl overflow-hidden shadow-2xl mb-12">
+                        <img src="${cap.img}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10">
+                            <span class="text-amber-400 font-bold uppercase tracking-widest text-sm">Capítulo ${cap.id}</span>
+                            <h2 class="text-5xl font-black text-white serif">${cap.titulo}</h2>
+                        </div>
+                    </div>
+
+                    <div class="prose prose-xl text-slate-700 mb-12 leading-relaxed italic text-lg border-l-4 border-amber-500 pl-6">
+                        ${cap.contenido}
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-100 p-8 rounded-3xl border border-slate-200">
+                            <h4 class="font-black text-slate-900 mb-4 uppercase text-xs tracking-widest">Recursos y Enlaces</h4>
+                            <div class="space-y-3">
+                                ${cap.links.map(l => `
+                                    <a href="${l.u}" target="_blank" class="flex items-center justify-between bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition group border border-transparent hover:border-amber-400">
+                                        <span class="font-bold text-slate-800 group-hover:text-amber-600">${l.n}</span>
+                                        <svg class="w-5 h-5 text-slate-300 group-hover:text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="bg-amber-500 p-8 rounded-3xl text-white shadow-lg shadow-amber-200">
+                            <h4 class="font-black uppercase text-xs mb-4 opacity-80">Consejo del Autor</h4>
+                            <p class="text-lg font-medium leading-tight">"En el maquetismo, la paciencia es el pegamento más importante. Nunca apresures un corte."</p>
+                            <p class="mt-4 text-sm font-bold opacity-70">- Ignacio López Torres</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 pt-8 border-t border-slate-100 flex justify-between items-center">
+                        ${index > 0 ? `<button onclick="irACapitulo(${index-1})" class="text-slate-400 hover:text-slate-900 font-bold tracking-widest text-xs uppercase transition">← Anterior</button>` : '<div></div>'}
+                        <div class="flex gap-2">
+                             ${index < 9 ? `<button onclick="irACapitulo(${index+1})" class="bg-slate-900 text-white px-10 py-4 rounded-full font-bold shadow-xl hover:bg-slate-800 transition">Siguiente Capítulo</button>` : `<button onclick="window.location.reload()" class="bg-green-600 text-white px-10 py-4 rounded-full font-bold shadow-xl">Finalizar Libro</button>`}
+                        </div>
+                    </div>
+                </div>
+            `;
+            // Scroll arriba
+            document.querySelector('main').scrollTop = 0;
+        }
+
+        window.onload = generarMenu;
+    </script>
 </body>
 </html>
