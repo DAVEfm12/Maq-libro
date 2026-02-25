@@ -3,194 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Completo: Maquetas para Principiantes</title>
+    <title>Manual Integral: Maquetas para Principiantes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background: #f1f5f9; }
-        .sidebar-scroll::-webkit-scrollbar { width: 5px; }
-        .sidebar-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .prose h3 { color: #1e293b; font-weight: 800; border-left: 4px solid #f59e0b; padding-left: 1rem; margin: 2rem 0 1rem; }
-        .prose p { margin-bottom: 1.25rem; line-height: 1.8; text-align: justify; color: #475569; }
-        .prose ul, .prose ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
-        .prose li { margin-bottom: 0.5rem; }
-        .nav-item { transition: all 0.3s; border-radius: 0.75rem; margin-bottom: 0.25rem; }
-        .nav-item:hover { background: #334155; color: white; }
-        .active-cap { background: #f59e0b !important; color: white !important; font-weight: bold; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .prose h3 { color: #0f172a; font-weight: 800; border-left: 5px solid #f59e0b; padding-left: 1rem; margin: 2rem 0 1rem; font-size: 1.5rem; }
+        .prose p { margin-bottom: 1.25rem; text-align: justify; line-height: 1.8; color: #334155; }
+        .prose ul { list-style: none; padding-left: 0; margin-bottom: 2rem; }
+        .prose li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: #475569; }
+        .prose li::before { content: '→'; position: absolute; left: 0; color: #f59e0b; font-weight: bold; }
+        .nav-active { background: #f59e0b !important; color: white !important; font-weight: bold; transform: translateX(10px); }
+        .image-container { border-radius: 2rem; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); margin-bottom: 2.5rem; }
+        picture img { width: 100%; height: auto; object-fit: cover; transition: transform 0.5s; }
+        picture img:hover { transform: scale(1.03); }
     </style>
 </head>
-<body class="flex h-screen overflow-hidden">
+<body class="bg-slate-50 flex h-screen overflow-hidden flex-col lg:flex-row">
 
-    <aside class="w-80 bg-slate-900 text-slate-300 flex flex-col shadow-2xl hidden lg:flex">
-        <div class="p-6 border-b border-slate-800">
-            <h1 class="text-white font-black text-xl tracking-tighter uppercase">Colección Dorada</h1>
-            <p class="text-amber-500 text-[10px] font-bold tracking-[0.2em]">IGNACIO LÓPEZ TORRES</p>
+    <aside class="w-full lg:w-96 bg-slate-900 text-slate-400 h-full flex flex-col shadow-2xl z-50 overflow-y-auto border-r border-slate-800">
+        <div class="p-10 border-b border-slate-800">
+            <h1 class="text-white text-2xl font-black tracking-tighter italic">COLECCIÓN DORADA</h1>
+            <p class="text-amber-500 text-[10px] font-bold uppercase tracking-[0.4em] mt-1">Ignacio López Torres</p>
         </div>
-        <nav id="nav-list" class="flex-1 overflow-y-auto p-4 sidebar-scroll"></nav>
+        <nav id="menu" class="flex-1 p-4 space-y-2"></nav>
+        <div class="p-6 bg-black/30 text-[10px] text-center uppercase tracking-widest opacity-60">Volumen I: Texto Íntegro</div>
     </aside>
 
-    <main class="flex-1 overflow-y-auto bg-white relative" id="main-scroll">
-        <div id="content-area" class="max-w-4xl mx-auto p-8 lg:p-16">
-            <div id="cover" class="text-center py-20">
-                <img src="Screenshot_20260225-104509.jpg" class="w-64 mx-auto rounded-3xl shadow-2xl mb-10 transform -rotate-2">
-                <h2 class="text-6xl font-black text-slate-900 leading-none mb-4">MAQUETAS PARA<br><span class="text-amber-500 italic uppercase">Principiantes</span></h2>
-                <p class="text-xl text-slate-500 mb-10 font-light italic">"Teoría, Elaboración, Acabados y Vegetación"</p>
-                <div class="bg-slate-100 p-6 rounded-2xl text-left text-sm text-slate-600 mb-10">
-                    <strong>Objetivo del Manual:</strong> Dar a conocer técnicas, materiales y herramientas para la elaboración de maquetas arquitectónicas a bajo costo, de forma sencilla para que cualquier persona pueda dominarlas[cite: 5].
+    <main class="flex-1 overflow-y-auto bg-white" id="scroll-container">
+        <div id="content" class="max-w-4xl mx-auto p-6 md:p-16 lg:p-20">
+            <div id="home" class="text-center py-10">
+                <div class="image-container max-w-sm mx-auto mb-10 rotate-1">
+                    <picture>
+                        <source media="(max-width: 600px)" srcset="Screenshot_20260225-104509.jpg">
+                        <img src="Screenshot_20260225-104509.jpg" alt="Portada del Manual">
+                    </picture>
                 </div>
-                <button onclick="loadChapter(0)" class="bg-slate-900 text-white px-12 py-4 rounded-full font-bold hover:bg-amber-500 transition-colors uppercase tracking-widest">Abrir Libro Completo</button>
+                <h2 class="text-6xl font-black text-slate-900 leading-none mb-6">MAQUETAS PARA<br><span class="text-amber-500 uppercase text-5xl">Principiantes</span></h2>
+                <p class="text-xl text-slate-500 mb-12 max-w-lg mx-auto italic font-light">Transcripción completa de técnicas, materiales y procesos arquitectónicos.</p>
+                <button onclick="showCap(0)" class="bg-slate-900 text-white px-16 py-5 rounded-full font-bold shadow-2xl hover:bg-amber-500 transition-all uppercase tracking-widest text-sm">Empezar Lectura Completa</button>
             </div>
         </div>
-    </main>
+    </aside>
 
     <script>
-        const chapters = [
+        const manualData = [
             {
-                title: "I. Introducción y Conceptos",
-                content: `<h3>La Maqueta como Herramienta</h3>
-                <p>La maqueta es la representación física, a escala y en tres dimensiones de una obra compleja[cite: 5]. El autor enfatiza que la maqueta <b>subordina al dibujo</b>; mientras que en los planos la visión espacial no es intuitiva, la maqueta permite visualizar volúmenes y circulaciones de forma real[cite: 31, 38].</p>
-                <h3>Elementos Compositivos</h3>
-                <ul>
-                    <li><b>Conceptuales:</b> Punto, línea, plano y volumen[cite: 3, 5].</li>
-                    <li><b>Visuales:</b> Forma, medida, color y textura.</li>
-                    <li><b>De Relación:</b> Dirección, posición, espacio y gravedad.</li>
-                    <li><b>Prácticos:</b> Representación, significado y función.</li>
-                </ul>`
+                t: "I. Introducción a las Maquetas",
+                img: "https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=1200",
+                c: `<h3>Concepto Fundamental</h3>
+                    <p>La maqueta es la representación física, a escala y en tres dimensiones de una obra. Ignacio López Torres sostiene que la maqueta <b>subordina al dibujo</b> porque permite visualizar volúmenes que el plano 2D oculta.</p>
+                    <h3>Elementos de la Composición</h3>
+                    <p>El manual detalla que todo modelo se basa en cuatro grupos de elementos:</p>
+                    <ul>
+                        <li><b>Conceptuales:</b> El punto, la línea, el plano y el volumen como base del diseño.</li>
+                        <li><b>Visuales:</b> La forma, la medida, el color que comunica y la textura que da realismo.</li>
+                        <li><b>De Relación:</b> Dirección, posición, espacio y la fuerza de gravedad en la estructura.</li>
+                        <li><b>Prácticos:</b> La representación fiel, el significado del objeto y su función final.</li>
+                    </ul>`
             },
             {
-                title: "II. Clasificación de Maquetas",
-                content: `<h3>Tipos de Modelos</h3>
-                <p>El manual clasifica las maquetas según su nivel de detalle y propósito:</p>
-                <ul>
-                    <li><b>De Edificación:</b> Urbanismo (conjuntos), edificios y estructuras.</li>
-                    <li><b>De Detalle:</b> Espacios interiores y mobiliario.</li>
-                    <li><b>Por Elaboración:</b> 
-                        <ul>
-                            <li><b>Volumétricas:</b> Estudio rápido de masas.</li>
-                            <li><b>Detalladas:</b> Presentación final con texturas.</li>
-                            <li><b>Semidetalladas:</b> Nivel intermedio.</li>
-                        </ul>
-                    </li>
-                    <li><b>Especiales:</b> Dinámicas (con movimiento), estáticas y virtuales (3D).</li>
-                </ul>`
+                t: "II. Clasificación Técnica",
+                img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200",
+                c: `<h3>Tipos de Maquetas según su Finalidad</h3>
+                    <p>El autor clasifica las maquetas para que el estudiante sepa qué técnica aplicar:</p>
+                    <ul>
+                        <li><b>Urbanismo:</b> Representación de manzanas, topografía y contextos.</li>
+                        <li><b>Edificación:</b> Viviendas, edificios públicos y naves industriales.</li>
+                        <li><b>Detalle:</b> Enfoque en interiores, mobiliario y secciones constructivas.</li>
+                    </ul>
+                    <h3>Modelos por Elaboración</h3>
+                    <p><b>Volumétricas:</b> Para estudio de masas. <b>Detalladas:</b> Para presentación final. <b>Virtuales (3D):</b> Modelos digitales que previenen errores en la obra real.</p>`
             },
             {
-                title: "III. Interpretación de Planos",
-                content: `<h3>Lectura Técnica</h3>
-                <p>Es fundamental dominar la lectura de planos antes de cortar el primer material[cite: 5]. El capítulo detalla:</p>
-                <ul>
-                    <li><b>Plantas Arquitectónicas:</b> Ubicación de muros, ejes y vanos.</li>
-                    <li><b>Fachadas:</b> Vistas principal, posterior, laterales y superior para definir alturas.</li>
-                    <li><b>Secciones y Alzados:</b> Cortes transversales que muestran niveles de entrepiso.</li>
-                    <li><b>Plano de Conjunto:</b> Visión aérea total de la obra y su contexto.</li>
-                </ul>`
+                t: "III. Interpretación de Planos",
+                img: "images.png", // Imagen solicitada por el usuario
+                c: `<h3>Lectura de Proyecto Arquitectónico</h3>
+                    <p>Antes de usar el cúter, se debe analizar la información del plano:</p>
+                    <ul>
+                        <li><b>Plantas:</b> Determinan la base, muros internos y ejes de la construcción.</li>
+                        <li><b>Fachadas:</b> Indican las alturas totales, niveles de pretiles y acabados.</li>
+                        <li><b>Cortes:</b> Muestran el espesor de las losas y los niveles de piso terminado.</li>
+                    </ul>
+                    <p>El manual enseña a trasladar estas medidas al cartón usando el escalímetro para evitar distorsiones en la escala.</p>`
             },
             {
-                title: "IV. Materiales Sugeridos",
-                content: `<h3>Selección y Economía</h3>
-                <p>Se priorizan materiales de bajo costo, incluso materiales considerados "basura"[cite: 5]:</p>
-                <ul>
-                    <li><b>Papeles:</b> Ilustración, cascarón y cartón batería (1, 2 y 3 mm)[cite: 3, 4, 9].</li>
-                    <li><b>Transparencias:</b> Vidrio, acetato y poliestireno para ventanas[cite: 3, 9].</li>
-                    <li><b>Metales:</b> Alambre de cobre, aluminio y mallas de filtro[cite: 3, 9].</li>
-                    <li><b>Moldeables:</b> Plastilina y arcilla[cite: 3, 9].</li>
-                    <li><b>Adhesivos:</b> Cola blanca, lápiz adhesivo y esmalte transparente[cite: 4].</li>
-                </ul>`
+                t: "IV. Catálogo de Materiales",
+                img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1200",
+                c: `<h3>Selección para Bajo Costo</h3>
+                    <p>El libro destaca el uso de materiales accesibles para que el costo no limite la creatividad:</p>
+                    <ul>
+                        <li><b>Cartón Batería:</b> Indispensable por sus grosores (1, 2 y 3 mm). Es el más fácil de lijar.</li>
+                        <li><b>Papel Ilustración:</b> Por su acabado liso y limpieza visual.</li>
+                        <li><b>Madera Balsa:</b> Para columnas, vigas y detalles estructurales finos.</li>
+                        <li><b>Acetatos:</b> Para representar cristales y fachadas integrales.</li>
+                    </ul>`
             },
             {
-                title: "V. Herramientas de Taller",
-                content: `<h3>Equipo de Trabajo</h3>
-                <ul>
-                    <li><b>Medición:</b> Regla de aluminio (indispensable para cortar), escalímetro y escuadras[cite: 4, 6].</li>
-                    <li><b>Corte:</b> Exacto (cúter profesional) con cuchillas rectas y curvas[cite: 15].</li>
-                    <li><b>Acabado:</b> Juego de limas finas y gruesas, y lijas de agua o madera[cite: 6, 15, 18].</li>
-                    <li><b>Uso General:</b> Martillo, rodillo de caucho y pinzas[cite: 6].</li>
-                </ul>
-                <p><b>Nota técnica:</b> Nunca usar reglas de plástico para cortar, ya que el cúter las daña y desvía el trazo[cite: 6].</p>`
+                t: "V. Herramientas de Precisión",
+                img: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?q=80&w=1200",
+                c: `<h3>El Equipo del Maquetista</h3>
+                    <p>Se dividen en herramientas de medición, corte y acabado:</p>
+                    <ul>
+                        <li><b>Regla de Aluminio:</b> Obligatoria para corte. El plástico se daña con el cúter.</li>
+                        <li><b>Cúter Profesional:</b> Con cuchillas de 45 grados siempre afiladas.</li>
+                        <li><b>Limas:</b> Gruesas para desbastar y finas para acabados en los cantos del cartón.</li>
+                        <li><b>Escalímetro:</b> Para trabajar con precisión en escalas como 1:50 y 1:100.</li>
+                    </ul>`
             },
             {
-                title: "VI. Técnicas de Corte",
-                content: `<h3>Procedimiento Manual</h3>
-                <p>El éxito de la maqueta depende de la limpieza del corte[cite: 11]:</p>
-                <ol>
-                    <li><b>Revisión:</b> Verificar que la cuchilla tenga filo. Una cuchilla desafilada desgarra el cartón[cite: 8, 15].</li>
-                    <li><b>Apoyo:</b> Usar siempre regla de acero o aluminio sobre una base de madera o corte[cite: 15].</li>
-                    <li><b>Ejecución:</b> Realizar cortes ligeros primero para definir el surco y luego profundizar. No intentar cortar cartón grueso de una sola pasada[cite: 16].</li>
-                </ol>`
+                t: "VI. Técnica de Corte Manual",
+                img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200",
+                c: `<h3>El Secreto de las Pasadas</h3>
+                    <p>Ignacio López Torres explica que nunca se debe aplicar fuerza excesiva. Se aplica la <b>Regla de las Tres Pasadas</b>:</p>
+                    <ol class="list-decimal pl-5 space-y-4">
+                        <li><b>Marcado:</b> Un corte superficial que sirve de guía.</li>
+                        <li><b>Profundizado:</b> Atraviesa el núcleo del material.</li>
+                        <li><b>Seccionado:</b> Corta la capa final de papel.</li>
+                    </ol>
+                    <p>Esto garantiza que los bordes no se "despeinen" y la unión sea perfecta.</p>`
             },
             {
-                title: "VII. Escalas y Acotaciones",
-                content: `<h3>Matemática del Modelo</h3>
-                <p>La escala es la relación matemática entre el objeto real y el modelo[cite: 3, 5].</p>
-                <ul>
-                    <li><b>Escala Natural:</b> 1:1.</li>
-                    <li><b>Escala de Reducción:</b> 1:50, 1:100, 1:200 (comunes en arquitectura).</li>
-                    <li><b>Uso del Escalímetro:</b> Permite trasladar medidas del plano al cartón sin cálculos manuales constantes[cite: 7].</li>
-                </ul>`
+                t: "VII. Escalas y Acotaciones",
+                img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200",
+                c: `<h3>Matemática del Espacio</h3>
+                    <p>La escala es la relación entre el objeto real y el modelo físico. El manual profundiza en:</p>
+                    <ul>
+                        <li><b>Escalas de Reducción:</b> 1:50 para interiores, 1:100 para casas residenciales.</li>
+                        <li><b>Figura Humana:</b> Es vital incluir siluetas a escala para que el espectador entienda el tamaño real de los espacios.</li>
+                    </ul>`
             },
             {
-                title: "VIII. Elaboración Paso a Paso",
-                content: `<h3>Metodologías de Armado</h3>
-                <p>Existen dos formas de ensamblar según el objetivo[cite: 4, 11]:</p>
-                <ol>
-                    <li><b>Por Partes:</b> Se arma pieza por pieza (muro por muro). Es el método más exacto y recomendado para interiores detallados[cite: 11, 14].</li>
-                    <li><b>Por Conjuntos:</b> Se ensambla la estructura completa rápidamente. Ideal para maquetas externas o de presentación conceptual[cite: 12, 14, 19].</li>
-                </ol>
-                <p><b>Consejo del autor:</b> Realizar pruebas de ensamble sin pegamento primero para asegurar que todas las piezas encajen perfectamente[cite: 7, 18].</p>`
+                t: "VIII. Elaboración Paso a Paso",
+                img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1200",
+                c: `<h3>Metodologías de Armado</h3>
+                    <p>Existen dos formas principales de ensamblar descritas en el libro:</p>
+                    <ul>
+                        <li><b>Por Partes:</b> Se arma muro por muro. Es el método más exacto para interiores.</li>
+                        <li><b>Por Conjunto:</b> Se arman bloques completos. Ideal para maquetas de estudio rápido.</li>
+                    </ul>
+                    <p>Se recomienda usar <b>alfileres</b> para sostener los muros en ángulo de 90° mientras seca el pegamento.</p>`
             },
             {
-                title: "IX. Acabados y Realismo",
-                content: `<h3>Texturización Profesional</h3>
-                <ul>
-                    <li><b>Limado Dual:</b> Usar lima gruesa para desbastar uniones y lima fina para el acabado suave[cite: 18].</li>
-                    <li><b>Pegado de Texturas:</b> Usar lápiz adhesivo para evitar que el papel se arrugue. Asegurarse de que la superficie esté libre de polvo[cite: 20, 22].</li>
-                    <li><b>Detalles:</b> Representación de portones con palillos y marcos con tiras de papel[cite: 22, 24].</li>
-                </ul>`
+                t: "IX. Acabados y Realismo",
+                img: "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1200",
+                c: `<h3>Texturización y Detalle</h3>
+                    <p>Para lograr acabados profesionales se utilizan:</p>
+                    <ul>
+                        <li><b>Limado de Uniones:</b> Para que no se note dónde termina un muro y empieza el otro.</li>
+                        <li><b>Representación de Materiales:</b> Rayado del cartón para simular ladrillo o piedra.</li>
+                        <li><b>Pintura:</b> Aplicación de capas muy delgadas para no humedecer y doblar el cartón.</li>
+                    </ul>`
             },
             {
-                title: "X. Vegetación y Paisajismo",
-                content: `<h3>Ambientación</h3>
-                <p>La vegetación da vida a la maqueta y ayuda a entender la escala humana[cite: 4, 25].</p>
-                <ul>
-                    <li><b>Materiales:</b> Ramas secas naturales, aserrín teñido y esponjas[cite: 25].</li>
-                    <li><b>Mantenimiento:</b> Cubrir con plástico para evitar el polvo y sacudir periódicamente[cite: 25].</li>
-                </ul>
-                <h3>Bibliografía Recomendada</h3>
-                <p>El manual cita portales como arqhys.com, bibliocad.com y pichiscalculator.com para profundizar en técnicas específicas.</p>`
+                t: "X. Vegetación y Paisajismo",
+                img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200",
+                c: `<h3>Ambientación del Entorno</h3>
+                    <p>La vegetación da el toque final de realismo. El autor propone:</p>
+                    <ul>
+                        <li><b>Árboles:</b> Uso de ramas secas naturales sumergidas en pegamento y aserrín verde.</li>
+                        <li><b>Césped:</b> Polvo de esponja teñido aplicado sobre pegamento blanco diluido.</li>
+                        <li><b>Mantenimiento:</b> Limpiar el polvo con aire comprimido para evitar que el material se degrade.</li>
+                    </ul>`
             }
         ];
 
-        function loadChapter(index) {
-            const area = document.getElementById('content-area');
-            const cap = chapters[index];
-            area.innerHTML = `
+        const menu = document.getElementById('menu');
+        manualData.forEach((cap, i) => {
+            const btn = document.createElement('button');
+            btn.id = `btn-${i}`;
+            btn.className = "w-full text-left p-4 rounded-xl transition-all flex items-center text-sm font-bold border border-transparent hover:bg-slate-800";
+            btn.innerHTML = `<span class="bg-slate-800 text-amber-500 w-8 h-8 rounded-lg mr-4 flex items-center justify-center font-black text-xs">${i+1}</span> ${cap.t}`;
+            btn.onclick = () => showCap(i);
+            menu.appendChild(btn);
+        });
+
+        function showCap(index) {
+            document.querySelectorAll('nav button').forEach(b => b.classList.remove('nav-active'));
+            document.getElementById(`btn-${index}`).classList.add('nav-active');
+
+            const contentArea = document.getElementById('content');
+            const data = manualData[index];
+
+            contentArea.innerHTML = `
                 <div class="animate-[fadeIn_0.5s_ease-out]">
-                    <span class="text-amber-500 font-bold uppercase text-xs tracking-widest">Capítulo ${index + 1}</span>
-                    <h2 class="text-4xl font-black text-slate-900 mb-8">${cap.title}</h2>
-                    <div class="prose max-w-none">${cap.content}</div>
-                    <div class="mt-12 pt-8 border-t flex justify-between">
-                        ${index > 0 ? `<button onclick="loadChapter(${index-1})" class="text-slate-400 font-bold hover:text-slate-900">← Anterior</button>` : '<span></span>'}
-                        ${index < chapters.length - 1 ? `<button onclick="loadChapter(${index+1})" class="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold">Siguiente Capítulo</button>` : ''}
+                    <div class="image-container">
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="${data.img}">
+                            <img src="${data.img}" alt="${data.t}">
+                        </picture>
+                    </div>
+                    <span class="text-amber-500 font-black uppercase text-xs tracking-widest mb-2 block">Capítulo ${index + 1}</span>
+                    <h2 class="text-5xl font-black text-slate-900 mb-8 leading-tight tracking-tighter">${data.t}</h2>
+                    <div class="prose max-w-none">
+                        ${data.c}
+                    </div>
+                    <div class="mt-16 pt-10 border-t flex justify-between items-center">
+                        ${index > 0 ? `<button onclick="showCap(${index-1})" class="text-slate-400 font-bold hover:text-slate-900 transition">← Anterior</button>` : '<span></span>'}
+                        ${index < manualData.length - 1 ? `<button onclick="showCap(${index+1})" class="bg-slate-900 text-white px-10 py-4 rounded-full font-bold shadow-xl hover:bg-amber-500 transition-all uppercase text-xs tracking-widest">Siguiente</button>` : `<button onclick="location.reload()" class="bg-amber-500 text-white px-10 py-4 rounded-full font-bold">REINICIAR</button>`}
                     </div>
                 </div>
             `;
-            document.getElementById('main-scroll').scrollTop = 0;
-            updateNav(index);
+            document.getElementById('scroll-container').scrollTop = 0;
         }
 
-        function updateNav(index) {
-            const btns = document.querySelectorAll('.nav-item');
-            btns.forEach((b, i) => i === index ? b.classList.add('active-cap') : b.classList.remove('active-cap'));
-        }
-
-        const nav = document.getElementById('nav-list');
-        chapters.forEach((cap, i) => {
-            const btn = document.createElement('button');
-            btn.className = "nav-item w-full text-left p-3 text-sm flex items-center gap-3";
-            btn.innerHTML = `<span class="opacity-50 text-[10px]">${i+1}</span> ${cap.title}`;
-            btn.onclick = () => loadChapter(i);
-            nav.appendChild(btn);
-        });
+        // Animación simple de CSS
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }`;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
