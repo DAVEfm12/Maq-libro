@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Integral: Maquetas para Principiantes | Ignacio López Torres</title>
+    <title>Manual Integral: Maquetas para Principiantes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,800;1,800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
         
         :root {
             --primary: #f59e0b;
-            --dark: #0f172a;
+            --primary-dark: #d97706;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
         }
 
         body { 
@@ -18,370 +20,415 @@
             scroll-behavior: smooth; 
         }
 
-        .serif { font-family: 'Playfair Display', serif; }
-
-        /* Estilos del contenido (Prose Custom) */
+        /* Estilos de Tipografía y Prosa */
         .prose h3 { 
-            color: var(--dark); 
+            color: var(--slate-900); 
             font-weight: 800; 
             border-left: 6px solid var(--primary); 
-            padding-left: 1.5rem; 
+            padding-left: 1.25rem; 
             margin: 2.5rem 0 1.25rem; 
-            font-size: 1.75rem;
+            font-size: 1.75rem; 
             letter-spacing: -0.025em;
         }
 
         .prose p { 
             margin-bottom: 1.5rem; 
             text-align: justify; 
-            line-height: 1.9; 
-            color: #334155; 
+            line-height: 1.85; 
+            color: #475569; 
             font-size: 1.1rem;
         }
 
-        .prose b { color: var(--dark); font-weight: 700; }
+        .prose b { color: var(--slate-900); font-weight: 700; }
 
-        .prose ul, .prose ol { 
-            background: #f8fafc;
-            padding: 2rem;
-            border-radius: 1.5rem;
-            margin-bottom: 2.5rem;
-            border: 1px solid #e2e8f0;
-        }
-
+        .prose ul { list-style: none; padding-left: 0; margin-bottom: 2.5rem; }
         .prose li { 
             position: relative; 
             padding-left: 2rem; 
             margin-bottom: 1rem; 
-            color: #475569;
-            list-style: none;
+            color: #334155; 
+            line-height: 1.6;
         }
-
         .prose li::before { 
-            content: '✦'; 
+            content: '→'; 
             position: absolute; 
             left: 0; 
             color: var(--primary); 
-            font-weight: bold; 
+            font-weight: 900; 
         }
 
-        /* Navegación */
+        /* Navegación y Sidebar */
         .nav-active { 
             background: var(--primary) !important; 
             color: white !important; 
             font-weight: bold; 
-            transform: translateX(12px);
-            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.3);
+            transform: translateX(8px);
+            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.4);
         }
 
+        .menu-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Contenedores de Imagen */
         .image-container { 
             border-radius: 2.5rem; 
             overflow: hidden; 
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25); 
-            margin-bottom: 3rem;
-            background: #e2e8f0;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.2); 
+            margin-bottom: 3rem; 
+            background: #f1f5f9;
         }
 
         picture img { 
             width: 100%; 
-            height: 60vh; 
+            height: auto; 
             object-fit: cover; 
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+            transition: transform 0.7s ease; 
         }
-
         picture img:hover { transform: scale(1.05); }
 
         /* Animaciones */
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-content { animation: slideUp 0.6s ease-out forwards; }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        .animate-content {
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Badge Estilizado */
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body class="bg-slate-50 flex h-screen overflow-hidden flex-col lg:flex-row">
 
-    <!-- Sidebar Izquierda -->
+    <!-- Sidebar Lateral -->
     <aside class="w-full lg:w-[400px] bg-slate-900 text-slate-400 h-full flex flex-col shadow-2xl z-50 overflow-hidden border-r border-slate-800">
-        <div class="p-10 border-b border-slate-800">
-            <span class="text-amber-500 font-bold text-[10px] tracking-[0.5em] block mb-2">ARQUITECTURA & DISEÑO</span>
-            <h1 class="text-white text-3xl font-black tracking-tighter serif italic">Colección Dorada</h1>
-            <p class="text-slate-500 text-xs mt-2 font-medium italic">Por Ignacio López Torres</p>
+        <div class="p-10 border-b border-slate-800 bg-slate-900/50 backdrop-blur-xl">
+            <h1 class="text-white text-3xl font-black tracking-tighter italic leading-none">COLECCIÓN<br>DORADA</h1>
+            <p class="text-amber-500 text-[11px] font-bold uppercase tracking-[0.5em] mt-3">Ignacio López Torres</p>
         </div>
         
-        <div class="flex-1 overflow-y-auto custom-scrollbar p-6">
-            <p class="px-4 mb-4 text-[10px] uppercase tracking-widest font-bold text-slate-500">Contenido del Volumen I</p>
-            <nav id="menu" class="space-y-3"></nav>
-        </div>
+        <nav id="menu" class="flex-1 overflow-y-auto p-6 space-y-3 custom-scrollbar">
+            <!-- Botón Home -->
+            <button onclick="showHome()" id="btn-home" class="w-full text-left p-4 rounded-2xl menu-item flex items-center text-sm font-bold border border-transparent hover:bg-slate-800 text-slate-300">
+                <span class="bg-slate-800 text-white w-8 h-8 rounded-xl mr-4 flex items-center justify-center font-black text-xs">H</span> Inicio del Manual
+            </button>
+            <div class="h-px bg-slate-800 my-4 mx-4"></div>
+            <!-- Capítulos generados por JS -->
+        </nav>
 
-        <div class="p-8 bg-black/40 border-t border-slate-800">
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold">ILT</div>
-                <div>
-                    <p class="text-white text-xs font-bold">Edición Profesional</p>
-                    <p class="text-[10px] opacity-50 uppercase tracking-tighter">Copyright © 2024</p>
-                </div>
-            </div>
+        <div class="p-6 bg-black/40 text-[10px] text-center uppercase tracking-[0.3em] font-semibold text-slate-500 border-t border-slate-800">
+            Volumen I • Técnica & Praxis
         </div>
     </aside>
 
-    <!-- Área Principal de Lectura -->
+    <!-- Área de Contenido Principal -->
     <main class="flex-1 overflow-y-auto bg-white relative" id="scroll-container">
-        <!-- Header Flotante -->
-        <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100 px-8 py-4 flex justify-between items-center lg:hidden">
-             <h1 class="text-slate-900 font-black tracking-tighter italic">COLECCIÓN DORADA</h1>
-             <button onclick="toggleMobileMenu()" class="text-slate-900 font-bold">Menú</button>
-        </header>
-
         <div id="content" class="max-w-4xl mx-auto p-8 md:p-16 lg:p-24">
-            <!-- Pantalla de Inicio -->
-            <div id="home" class="text-center py-10 animate-content">
-                <div class="image-container max-w-sm mx-auto mb-12 rotate-2">
-                    <img src="Screenshot_20260225-104509.jpg" alt="Portada Oficial" onerror="this.src='https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=1200'">
-                </div>
-                <h2 class="text-7xl font-black text-slate-900 leading-[0.9] mb-8 tracking-tighter">
-                    MAQUETAS PARA<br>
-                    <span class="text-amber-500 uppercase text-6xl">Principiantes</span>
-                </h2>
-                <div class="h-1 w-24 bg-amber-500 mx-auto mb-10"></div>
-                <p class="text-xl text-slate-500 mb-12 max-w-xl mx-auto leading-relaxed">
-                    Descubra el arte de la tridimensionalidad arquitectónica. Un compendio exhaustivo sobre técnicas, materiales y la filosofía del modelo físico.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="showCap(0)" class="bg-slate-900 text-white px-12 py-5 rounded-2xl font-bold shadow-2xl hover:bg-amber-500 transition-all hover:-translate-y-1 uppercase tracking-widest text-sm">
-                        Iniciar Lectura Técnica
-                    </button>
-                </div>
-            </div>
+            <!-- El contenido inicial se carga aquí -->
         </div>
     </main>
 
     <script>
         const manualData = [
             {
-                t: "I. Filosofía de la Maqueta",
+                t: "I. El Concepto de Maqueta",
                 img: "https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=1200",
-                c: `<h3>La Maqueta como Verdad Física</h3>
-                    <p>En este primer capítulo, Ignacio López Torres establece que la maqueta no es un accesorio, sino un <b>instrumento de comprobación</b>. Mientras que el dibujo puede engañar al ojo mediante la perspectiva, la maqueta obliga a confrontar la realidad del espacio.</p>
-                    <p>El autor sostiene que la maqueta <b>subordina al dibujo</b> porque en ella aparecen problemas estructurales y de sombra que el plano bidimensional simplemente no puede prever.</p>
-                    <h3>Los Cuatro Pilares de la Composición</h3>
+                c: `
+                    <div class="step-badge">Fundamentos Teóricos</div>
+                    <h3>La Maqueta como Lenguaje</h3>
+                    <p>Para Ignacio López Torres, la maqueta no es un simple adorno, sino una <b>herramienta de comprobación espacial</b>. Mientras que el dibujo técnico puede ser engañoso, la maqueta subordina al trazo porque enfrenta al arquitecto con la realidad de la luz, la sombra y la gravedad.</p>
+                    <h3>Grupos Compositivos de la Obra</h3>
+                    <p>Todo modelo físico exitoso debe armonizar cuatro dimensiones fundamentales:</p>
                     <ul>
-                        <li><b>Elementos Conceptuales:</b> El punto como origen, la línea como dirección, el plano como límite y el volumen como realidad total.</li>
-                        <li><b>Elementos Visuales:</b> Cómo la luz incide en la forma y cómo el color altera la percepción del peso visual.</li>
-                        <li><b>Elementos de Relación:</b> La interacción del objeto con la gravedad y la posición relativa del observador (escala humana).</li>
-                        <li><b>Elementos Prácticos:</b> La función del modelo, sea para estudio rápido o para presentación final ante un cliente.</li>
-                    </ul>`
+                        <li><b>Elementos Conceptuales:</b> El punto como origen, la línea como recorrido, el plano como límite y el volumen como presencia total.</li>
+                        <li><b>Elementos Visuales:</b> La forma (geometría), la medida (escala), el color (psicología) y la textura (sensación táctil).</li>
+                        <li><b>Elementos de Relación:</b> Cómo se sitúa el objeto en el espacio, su dirección, posición y equilibrio estructural.</li>
+                        <li><b>Elementos Prácticos:</b> La función del modelo (¿es para estudiar o para vender?), su significado y su representación simbólica.</li>
+                    </ul>
+                `
             },
             {
                 t: "II. Clasificación y Tipologías",
                 img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200",
-                c: `<h3>¿Qué tipo de maqueta necesita tu proyecto?</h3>
-                    <p>No todas las maquetas se construyen igual. El manual define tres grandes familias según su objetivo técnico:</p>
-                    <h3>1. Maquetas de Urbanismo</h3>
-                    <p>Representan el contexto. Aquí la precisión de la topografía es vital. Se utilizan para entender manzanas, flujos vehiculares y el impacto de grandes masas en la ciudad.</p>
-                    <h3>2. Maquetas de Edificación</h3>
-                    <p>Es el corazón del aprendizaje. Incluye viviendas, edificios industriales y obra pública. Se enfocan en la relación entre el interior y el exterior.</p>
-                    <h3>3. Maquetas de Detalle</h3>
-                    <p>Utilizadas para interiores o secciones constructivas. Se trabaja a escalas grandes (1:20, 1:10) para mostrar texturas de materiales, muebles y la unión de piezas estructurales.</p>`
-            },
-            {
-                t: "III. La Mente del Maquetista",
-                img: "images.png", // Imagen solicitada
-                c: `<h3>Interpretación de Planos Arquitectónicos</h3>
-                    <p>Antes de realizar el primer corte, el maquetista debe ser capaz de "construir en su mente". Ignacio López Torres insiste en el análisis exhaustivo de:</p>
+                c: `
+                    <div class="step-badge">Categorización Técnica</div>
+                    <h3>Modelos según su Propósito</h3>
+                    <p>No todas las maquetas se construyen igual. El manual define tres grandes familias según la fase del proyecto:</p>
                     <ul>
-                        <li><b>Plantas:</b> Identificar muros de carga vs. muros divisorios.</li>
-                        <li><b>Fachadas:</b> Determinar los "paños" o niveles de profundidad para dar relieve.</li>
-                        <li><b>Cortes:</b> Comprender el grosor de las losas y las alturas libres de entrepiso.</li>
+                        <li><b>Maquetas de Urbanismo:</b> Escalas grandes (1:500 a 1:2500). Representan masas de edificios, topografía de cerros y flujos viales.</li>
+                        <li><b>Maquetas de Edificación:</b> El corazón del diseño. Se dividen en maquetas de conjunto (el edificio y su entorno) y maquetas de detalle (interiores o estructuras).</li>
+                        <li><b>Maquetas de Paisajismo:</b> Enfoque en la vegetación, cuerpos de agua y mobiliario urbano.</li>
                     </ul>
-                    <p><b>Consejo Técnico:</b> Siempre use el escalímetro para verificar que las copias de los planos no hayan sufrido distorsiones por la impresión. Un error de 1mm en el papel puede significar centímetros de desfase en la maqueta final.</p>`
+                    <h3>Maquetas Virtuales vs. Físicas</h3>
+                    <p>Aunque el modelado 3D digital es potente, el autor defiende la maqueta física como la única capaz de revelar errores de proporción que el ojo humano ignora en una pantalla plana.</p>
+                `
             },
             {
-                t: "IV. El Arsenal de Materiales",
+                t: "III. El Lenguaje de los Planos",
+                img: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200",
+                c: `
+                    <div class="step-badge">Interpretación de Datos</div>
+                    <h3>La Lectura Previa al Corte</h3>
+                    <p>Un error común es empezar a cortar sin entender el proyecto. El manual exige analizar tres documentos clave:</p>
+                    <ul>
+                        <li><b>Plantas Arquitectónicas:</b> Nos dan la huella del edificio y la posición exacta de los muros de carga.</li>
+                        <li><b>Fachadas (Alzados):</b> Indican las alturas reales, niveles de pretil y la ubicación de vanos para ventanas.</li>
+                        <li><b>Cortes Transversales:</b> Indispensables para entender el espesor de las losas y los niveles de entrepiso.</li>
+                    </ul>
+                    <p><b>Consejo Maestro:</b> "El plano es la partitura; la maqueta es la interpretación. Si la partitura está mal leída, la obra desafinará".</p>
+                `
+            },
+            {
+                t: "IV. Catálogo de Materiales",
                 img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1200",
-                c: `<h3>Selección según Resistencia y Estética</h3>
-                    <p>El costo no debe ser un impedimento. El manual propone el uso inteligente de:</p>
+                c: `
+                    <div class="step-badge">Recursos y Soporte</div>
+                    <h3>Materiales de Bajo Costo y Alta Precisión</h3>
+                    <p>Ignacio López destaca que el talento supera al presupuesto. Propone materiales accesibles que emulan acabados de lujo:</p>
                     <ul>
-                        <li><b>Papel Batería (1, 2, 3 mm):</b> El estándar de oro. Su núcleo es denso, permitiendo lijar las uniones para que parezcan una sola pieza.</li>
-                        <li><b>Papel Ilustración:</b> Excelente para acabados blancos impolutos. Requiere cuidado extremo para no mancharlo con pegamento.</li>
-                        <li><b>Madera Balsa:</b> Ideal para representar estructuras de madera real, columnas y vigas vistas.</li>
-                        <li><b>Acetatos y Polímeros:</b> Para la transparencia de los vanos. Tip: lija ligeramente el acetato para simular vidrio esmerilado.</li>
-                    </ul>`
-            },
-            {
-                t: "V. Herramientas de Corte",
-                img: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?q=80&w=1200",
-                c: `<h3>La Regla de Oro: Seguridad y Filo</h3>
-                    <p>Un maquetista es tan bueno como sus herramientas. El kit básico profesional según el autor incluye:</p>
-                    <ul>
-                        <li><b>Regla de Aluminio:</b> Nunca use plástico para cortar; el cúter muerde el borde y arruina la línea recta.</li>
-                        <li><b>Cúter de 45 Grados:</b> Mantenga siempre la punta afilada. Un cuchillo sin filo rasga el cartón en lugar de cortarlo.</li>
-                        <li><b>Limas de Grano Fino:</b> Indispensables para los acabados. Sirven para igualar los cantos de los muros después de pegarlos.</li>
-                        <li><b>Escalímetro Metálico:</b> Para una precisión que dure años.</li>
-                    </ul>`
-            },
-            {
-                t: "VI. Técnica del Corte Maestro",
-                img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200",
-                c: `<h3>La Regla de las Tres Pasadas</h3>
-                    <p>Es el secreto mejor guardado de Ignacio López Torres para evitar accidentes y lograr bordes perfectos:</p>
-                    <ol>
-                        <li><b>Paso 1 (El Marcado):</b> Un corte superficial, casi sin presión, que sirve de riel para las siguientes pasadas.</li>
-                        <li><b>Paso 2 (La Profundidad):</b> Con presión media, se corta el núcleo del material (cartón).</li>
-                        <li><b>Paso 3 (La Separación):</b> Se termina de cortar la última capa de papel.</li>
-                    </ol>
-                    <p><b>Importante:</b> Mantenga el cúter en un ángulo constante. Si inclina el cúter lateralmente, el muro quedará con un corte en bisel y no podrá pegarlo a 90 grados.</p>`
-            },
-            {
-                t: "VII. Escalas y Proporción",
-                img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200",
-                c: `<h3>La Matemática del Realismo</h3>
-                    <p>La escala es la relación de tamaño. El manual destaca:</p>
-                    <ul>
-                        <li><b>Escala 1:100:</b> Ideal para volumetría general y proyectos grandes.</li>
-                        <li><b>Escala 1:50:</b> La preferida para viviendas, permitiendo ver muebles y circulaciones.</li>
-                        <li><b>La Figura Humana:</b> Un error común es omitirla. Sin siluetas humanas, el cerebro no puede interpretar correctamente la altura de los techos o el ancho de los pasillos.</li>
-                    </ul>`
-            },
-            {
-                t: "VIII. Ensamblaje y Pegado",
-                img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1200",
-                c: `<h3>Estructura y Estabilidad</h3>
-                    <p>El autor recomienda dos métodos de armado:</p>
-                    <ul>
-                        <li><b>Armado por Fachadas:</b> Útil para maquetas cerradas donde el interior no es el foco.</li>
-                        <li><b>Armado por Espacios:</b> Se levantan primero los muros interiores sobre la planta para garantizar que los recorridos sean exactos.</li>
+                        <li><b>Cartón Batería (1, 2, 3 mm):</b> El "estándar de oro" por su alma blanca y facilidad de lijado.</li>
+                        <li><b>Papel Ilustración:</b> Para acabados lisos, fachadas modernas y maquetas de concepto.</li>
+                        <li><b>Madera Balsa:</b> Para esqueletos estructurales, vigas y columnas finas.</li>
+                        <li><b>Espuma de Poliestireno:</b> Ideal para topografía y maquetas de masas volumétricas rápidas.</li>
                     </ul>
-                    <p><b>Truco del Autor:</b> Use alfileres de cabeza pequeña para sostener los muros en su lugar mientras el pegamento (UHU o silicón frío) cura. Esto garantiza ángulos de 90 grados perfectos.</p>`
+                    <p><b>Nota sobre Adhesivos:</b> El pegamento blanco es estructural; el pegamento de contacto es para recubrimientos; el cianoacrilato (KolaLoka) es para uniones críticas de secado instantáneo.</p>
+                `
             },
             {
-                t: "IX. Acabados de Alto Nivel",
-                img: "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1200",
-                c: `<h3>Texturización y Psicología del Color</h3>
-                    <p>Una maqueta monocromática (blanca) suele verse más elegante y profesional para jurados arquitectónicos. Sin embargo, para ventas inmobiliarias, el realismo es clave:</p>
+                t: "V. Herramientas del Oficio",
+                img: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?q=80&w=1200",
+                c: `
+                    <div class="step-badge">Equipamiento Técnico</div>
+                    <h3>El Kit de Supervivencia del Maquetista</h3>
+                    <p>La precisión no depende de la fuerza, sino de la herramienta adecuada:</p>
                     <ul>
-                        <li><b>Simulación de Materiales:</b> El rayado suave con punta seca sobre el cartón puede simular juntas de ladrillo o tablones de madera.</li>
-                        <li><b>Pintura:</b> Use pinturas en aerosol a una distancia de 30cm para no humedecer el cartón. Capas finas son mejores que una gruesa.</li>
-                    </ul>`
+                        <li><b>Cúter Profesional:</b> Siempre con cuchillas de repuesto. Una cuchilla sin filo desgarra el cartón.</li>
+                        <li><b>Regla de Acero:</b> Nunca use plástico para cortar; el filo del cúter se incrusta en el borde y arruina la línea recta.</li>
+                        <li><b>Escalímetro:</b> La brújula del arquitecto. Permite trabajar en 1:50, 1:75, 1:100 sin cálculos manuales tediosos.</li>
+                        <li><b>Limas y Lijas:</b> Grano 200 para desbastar, grano 400 para pulir cantos.</li>
+                    </ul>
+                `
+            },
+            {
+                t: "VI. La Regla de las Tres Pasadas",
+                img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200",
+                c: `
+                    <div class="step-badge">Técnica de Ejecución</div>
+                    <h3>Dominando el Corte Manual</h3>
+                    <p>Este es el secreto mejor guardado de Ignacio López Torres para evitar accidentes y lograr bordes perfectos:</p>
+                    <ol class="space-y-6 mt-6">
+                        <li><b>1. El Marcado:</b> Una pasada superficial con presión mínima. Solo abre la "piel" del papel para guiar las siguientes pasadas.</li>
+                        <li><b>2. La Profundización:</b> Presión media. El cúter viaja por el surco ya creado, cortando el núcleo del cartón.</li>
+                        <li><b>3. El Seccionado:</b> Se completa el corte atravesando la última capa. El material debe desprenderse casi solo.</li>
+                    </ol>
+                    <p class="mt-8"><b>Seguridad:</b> "Los dedos de la mano que sostiene la regla siempre deben estar lejos del borde de corte. La regla no se mueve, el cuerpo sí".</p>
+                `
+            },
+            {
+                t: "VII. Escalas y Acotaciones",
+                img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200",
+                c: `
+                    <div class="step-badge">Matemática Espacial</div>
+                    <h3>Relación Objeto - Modelo</h3>
+                    <p>La escala es una proporción. El manual enseña a pensar en escalas estándar:</p>
+                    <ul>
+                        <li><b>1:50:</b> Ideal para diseño de interiores y muebles. 1 metro real son 2 centímetros en la maqueta.</li>
+                        <li><b>1:100:</b> El estándar para casas habitación. 1 metro real es 1 centímetro.</li>
+                        <li><b>1:200:</b> Para edificios altos y conjuntos residenciales.</li>
+                    </ul>
+                    <p><b>Importancia de la Escala Humana:</b> Una maqueta sin siluetas humanas es un objeto muerto. La escala humana permite al cerebro entender inmediatamente la magnitud del espacio diseñado.</p>
+                `
+            },
+            {
+                t: "VIII. El Proceso de Ensamblaje",
+                img: "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1200",
+                c: `
+                    <div class="step-badge">Metodología Paso a Paso</div>
+                    <h3>Del Plano al Volumen</h3>
+                    <p>El autor recomienda dos métodos según la complejidad:</p>
+                    <ul>
+                        <li><b>Método de Muros Sueltos:</b> Se cortan todas las piezas por separado, se liman sus uniones a 45° y se ensamblan sobre la base. Es el más profesional.</li>
+                        <li><b>Método de Desarrollo:</b> Se corta una tira larga que se dobla para formar el perímetro. Es rápido pero menos preciso en las esquinas.</li>
+                    </ul>
+                    <p><b>Tip Pro:</b> Use alfileres para sostener los muros en vertical mientras el pegamento seca. No confíe solo en sus manos.</p>
+                `
+            },
+            {
+                t: "IX. Acabados y Texturización",
+                img: "https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=1200",
+                c: `
+                    <div class="step-badge">Realismo y Estética</div>
+                    <h3>Simulación de Materiales Reales</h3>
+                    <p>¿Cómo hacer que el cartón parezca concreto, madera o cristal?</p>
+                    <ul>
+                        <li><b>Concreto:</b> Pintura gris mate aplicada con esponja para dar porosidad.</li>
+                        <li><b>Cristal:</b> Acetato transparente. El secreto es pegarlo por dentro de los vanos para dar profundidad a la fachada.</li>
+                        <li><b>Madera:</b> Chapa de madera real o papel bond rayado con estilógrafo fino.</li>
+                    </ul>
+                    <p><b>Limpieza:</b> Una maqueta profesional no tiene restos de pegamento visibles. Use un palillo para aplicar adhesivo con precisión quirúrgica.</p>
+                `
             },
             {
                 t: "X. Paisajismo y Entorno",
                 img: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1200",
-                c: `<h3>Dando Vida al Modelo</h3>
-                    <p>La vegetación no debe verse "falsa". El manual sugiere:</p>
+                c: `
+                    <div class="step-badge">Ambientación Final</div>
+                    <h3>Dando Vida al Escenario</h3>
+                    <p>El entorno es lo que vende la idea arquitectónica:</p>
                     <ul>
-                        <li><b>Árboles:</b> Use ramas secas reales de arbustos pequeños. El realismo de la naturaleza es insuperable.</li>
-                        <li><b>Césped:</b> El aserrín teñido o el polvo de esponja aplicado sobre pegamento blanco diluido da una textura orgánica excelente.</li>
-                        <li><b>Agua:</b> Use resinas transparentes o simplemente papel azul bajo un acetato transparente para simular piscinas o lagos.</li>
-                    </ul>`
+                        <li><b>Vegetación:</b> Ramas secas naturales bañadas en pegamento y aserrín teñido para simular follaje.</li>
+                        <li><b>Agua:</b> Resina epóxica o simplemente acetato azul sobre un fondo texturizado.</li>
+                        <li><b>Césped:</b> Polvo de esponja teñido. Evite el papel verde liso, pues carece de profundidad visual.</li>
+                    </ul>
+                    <p><b>Finalización:</b> Proteja su obra con una caja de acrílico. El polvo es el mayor enemigo de las maquetas a largo plazo.</p>
+                `
             }
         ];
 
-        const menu = document.getElementById('menu');
-        
-        // Generar menú
-        manualData.forEach((cap, i) => {
-            const btn = document.createElement('button');
-            btn.id = `btn-${i}`;
-            btn.className = "w-full text-left p-4 rounded-2xl transition-all flex items-center text-sm font-semibold border border-transparent hover:bg-slate-800 group";
-            btn.innerHTML = `
-                <span class="bg-slate-800 text-amber-500 w-9 h-9 rounded-xl mr-4 flex items-center justify-center font-black text-xs group-hover:bg-amber-500 group-hover:text-white transition-colors">${i+1}</span> 
-                <span class="flex-1">${cap.t}</span>
-            `;
-            btn.onclick = () => showCap(i);
-            menu.appendChild(btn);
-        });
+        const menuContainer = document.getElementById('menu');
+        const contentArea = document.getElementById('content');
 
-        function showCap(index) {
-            // Actualizar estado navegación
-            document.querySelectorAll('nav button').forEach(b => b.classList.remove('nav-active'));
-            const activeBtn = document.getElementById(`btn-${index}`);
-            if(activeBtn) activeBtn.classList.add('nav-active');
+        // Inicializar Menú
+        function initMenu() {
+            manualData.forEach((cap, i) => {
+                const btn = document.createElement('button');
+                btn.id = `btn-${i}`;
+                btn.className = "w-full text-left p-4 rounded-2xl menu-item flex items-center text-sm font-bold border border-transparent hover:bg-slate-800 group";
+                btn.innerHTML = `
+                    <span class="bg-slate-800 group-hover:bg-amber-500/20 group-hover:text-amber-500 text-slate-500 w-8 h-8 rounded-xl mr-4 flex items-center justify-center font-black text-xs transition-colors">${i+1}</span> 
+                    <span class="flex-1">${cap.t}</span>
+                `;
+                btn.onclick = () => showCap(i);
+                menuContainer.appendChild(btn);
+            });
+        }
 
-            const contentArea = document.getElementById('content');
-            const data = manualData[index];
+        // Mostrar Home
+        function showHome() {
+            document.querySelectorAll('.menu-item').forEach(b => b.classList.remove('nav-active'));
+            document.getElementById('btn-home').classList.add('nav-active');
 
-            // Renderizar contenido con animación
             contentArea.innerHTML = `
-                <div class="animate-content">
-                    <div class="flex items-center gap-4 mb-8">
-                        <span class="h-px flex-1 bg-slate-100"></span>
-                        <span class="text-amber-500 font-black uppercase text-[10px] tracking-[0.3em]">Módulo Técnico ${index + 1}</span>
-                        <span class="h-px flex-1 bg-slate-100"></span>
-                    </div>
-
-                    <h2 class="text-6xl font-black text-slate-900 mb-10 leading-[0.95] tracking-tighter serif italic">${data.t}</h2>
-
-                    <div class="image-container">
+                <div class="text-center py-10 animate-content">
+                    <div class="image-container max-w-sm mx-auto mb-12 rotate-2 hover:rotate-0 transition-transform duration-500">
                         <picture>
-                            <img src="${data.img}" alt="${data.t}" loading="lazy">
+                            <img src="Screenshot_20260225-104509.jpg" alt="Portada del Manual" onerror="this.src='https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=600'">
                         </picture>
                     </div>
+                    <h2 class="text-7xl font-black text-slate-900 leading-[0.9] mb-8 tracking-tighter">
+                        MAQUETAS<br>
+                        <span class="text-amber-500 uppercase text-6xl block mt-2">Para Principiantes</span>
+                    </h2>
+                    <p class="text-xl text-slate-500 mb-12 max-w-xl mx-auto italic font-light leading-relaxed">
+                        Una transcripción exhaustiva de las técnicas, materiales y procesos arquitectónicos del Maestro Ignacio López Torres.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="showCap(0)" class="bg-slate-900 text-white px-12 py-5 rounded-3xl font-bold shadow-2xl hover:bg-amber-500 hover:-translate-y-1 transition-all uppercase tracking-widest text-xs">
+                            Empezar Lectura
+                        </button>
+                    </div>
+                    <div class="mt-20 grid grid-cols-3 gap-8 opacity-40">
+                        <div class="text-center">
+                            <span class="block text-2xl font-bold">10</span>
+                            <span class="text-[10px] uppercase font-bold tracking-widest">Capítulos</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="block text-2xl font-bold">100%</span>
+                            <span class="text-[10px] uppercase font-bold tracking-widest">Técnico</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="block text-2xl font-bold">VOL. 1</span>
+                            <span class="text-[10px] uppercase font-bold tracking-widest">Edición</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('scroll-container').scrollTop = 0;
+        }
+
+        // Mostrar Capítulo
+        function showCap(index) {
+            document.querySelectorAll('.menu-item').forEach(b => b.classList.remove('nav-active'));
+            document.getElementById(`btn-${index}`).classList.add('nav-active');
+
+            const data = manualData[index];
+
+            contentArea.innerHTML = `
+                <div class="animate-content">
+                    <div class="image-container">
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="${data.img}">
+                            <img src="${data.img}" alt="${data.t}">
+                        </picture>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="h-px bg-amber-500 w-12"></span>
+                        <span class="text-amber-600 font-black uppercase text-xs tracking-[0.3em]">Módulo de Aprendizaje ${index + 1}</span>
+                    </div>
+
+                    <h2 class="text-6xl font-black text-slate-900 mb-10 leading-tight tracking-tighter">${data.t}</h2>
                     
                     <div class="prose max-w-none">
                         ${data.c}
                     </div>
 
-                    <div class="mt-20 pt-10 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-6">
-                        ${index > 0 
-                            ? `<button onclick="showCap(${index-1})" class="group flex items-center text-slate-400 font-bold hover:text-slate-900 transition text-sm">
-                                <span class="mr-2 transition-transform group-hover:-translate-x-1">←</span> Capítulo Anterior
-                               </button>` 
-                            : '<span></span>'}
-                        
-                        <div class="flex items-center gap-2">
-                            ${Array.from({length: manualData.length}).map((_, i) => `
-                                <div class="w-1.5 h-1.5 rounded-full ${i === index ? 'bg-amber-500 w-4' : 'bg-slate-200'} transition-all"></div>
-                            `).join('')}
-                        </div>
+                    <div class="mt-24 pt-12 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-8">
+                        ${index > 0 ? `
+                            <button onclick="showCap(${index-1})" class="group flex items-center gap-3 text-slate-400 font-bold hover:text-slate-900 transition-colors">
+                                <span class="bg-slate-50 p-3 rounded-full group-hover:bg-slate-100 transition-colors">←</span> 
+                                <div>
+                                    <span class="block text-[10px] uppercase tracking-widest opacity-50">Anterior</span>
+                                    Capítulo ${index}
+                                </div>
+                            </button>
+                        ` : '<div></div>'}
 
-                        ${index < manualData.length - 1 
-                            ? `<button onclick="showCap(${index+1})" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl hover:bg-amber-500 transition-all uppercase text-[10px] tracking-widest hover:-translate-y-1">
-                                Siguiente Capítulo
-                               </button>` 
-                            : `<button onclick="location.reload()" class="bg-amber-500 text-white px-10 py-4 rounded-2xl font-bold shadow-xl hover:bg-slate-900 transition-all uppercase text-[10px] tracking-widest">
+                        ${index < manualData.length - 1 ? `
+                            <button onclick="showCap(${index+1})" class="bg-slate-900 text-white px-12 py-5 rounded-3xl font-bold shadow-2xl hover:bg-amber-500 hover:-translate-y-1 transition-all flex items-center gap-4">
+                                <div class="text-right">
+                                    <span class="block text-[10px] uppercase tracking-widest opacity-50">Siguiente</span>
+                                    CONTINUAR
+                                </div>
+                                <span class="text-xl">→</span>
+                            </button>
+                        ` : `
+                            <button onclick="showHome()" class="bg-amber-500 text-white px-12 py-5 rounded-3xl font-bold shadow-xl hover:bg-amber-600 transition-all flex items-center gap-4 uppercase text-xs tracking-widest">
                                 Finalizar Lectura
-                               </button>`}
+                            </button>
+                        `}
                     </div>
                 </div>
             `;
-            
-            // Scroll al inicio suave
-            document.getElementById('scroll-container').scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('scroll-container').scrollTop = 0;
         }
 
-        // Soporte para gestos táctiles simples (opcional)
-        let touchstartX = 0;
-        let touchendX = 0;
-        
-        const slider = document.getElementById('scroll-container');
-
-        slider.addEventListener('touchstart', e => {
-            touchstartX = e.changedTouches[0].screenX;
-        });
-
-        slider.addEventListener('touchend', e => {
-            touchendX = e.changedTouches[0].screenX;
-            handleGesture();
-        });
-
-        function handleGesture() {
-            if (touchendX < touchstartX - 100) {
-                // Swipe izquierda -> Siguiente
-                const currentIdx = manualData.findIndex(d => d.t === document.querySelector('h2').innerText);
-                if(currentIdx < manualData.length - 1) showCap(currentIdx + 1);
-            }
-            if (touchendX > touchstartX + 100) {
-                // Swipe derecha -> Anterior
-                const currentIdx = manualData.findIndex(d => d.t === document.querySelector('h2').innerText);
-                if(currentIdx > 0) showCap(currentIdx - 1);
-            }
-        }
+        // Ejecutar al cargar
+        window.onload = () => {
+            initMenu();
+            showHome();
+        };
     </script>
 </body>
 </html>
