@@ -3,251 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maquetas para Principiantes - Curso Interactivo</title>
+    <title>SDA - Sistema de Aprendizaje: Maquetación Profesional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --success: #27ae60;
-            --bg: #f4f7f6;
-            --white: #ffffff;
-            --text: #333;
+            --dark-space: #121212;
+            --blueprint-blue: #00457E;
+            --construct-orange: #FF6B35;
+            --glass-white: rgba(255, 255, 255, 0.95);
+            --sidebar-width: 320px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
+        body { font-family: 'Fira Sans', sans-serif; background: #e0e0e0; display: flex; height: 100vh; color: #333; }
 
-        /* Sidebar Navigation */
-        .sidebar { width: 320px; background: var(--primary); color: white; display: flex; flex-direction: column; box-shadow: 4px 0 10px rgba(0,0,0,0.2); }
-        .sidebar-header { padding: 25px; text-align: center; border-bottom: 1px solid #3e4f5f; }
-        .sidebar-header h2 { font-size: 1.2rem; letter-spacing: 1px; }
-        .sidebar-header span { color: var(--accent); font-size: 0.8rem; display: block; margin-top: 5px; }
-        
-        .nav-menu { flex: 1; overflow-y: auto; padding: 15px; }
-        .nav-item { 
-            display: block; width: 100%; padding: 12px 15px; margin-bottom: 8px;
-            background: transparent; border: none; color: #bdc3c7; text-align: left;
-            cursor: pointer; border-radius: 6px; transition: 0.3s; text-decoration: none; font-size: 0.95rem;
+        /* Estructura Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--dark-space);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.3);
+            z-index: 100;
         }
-        .nav-item:hover, .nav-item.active { background: var(--accent); color: white; transform: translateX(5px); }
 
-        /* Main Content Area */
-        .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; position: relative; }
-        .header { background: var(--white); padding: 20px 40px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .progress-container { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin-top: 15px; }
-        .progress-bar { height: 100%; background: var(--accent); width: 10%; transition: 0.5s; }
-
-        .view-section { padding: 40px; max-width: 900px; margin: 0 auto; width: 100%; }
-        .card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
-        
-        h1 { color: var(--primary); margin-bottom: 15px; }
-        p { line-height: 1.7; margin-bottom: 15px; font-size: 1.05rem; }
-
-        /* Activities */
-        .activity-box { border-left: 5px solid #f39c12; background: #fffdf9; }
-        .btn-action { 
-            background: var(--accent); color: white; border: none; padding: 10px 20px; 
-            border-radius: 5px; cursor: pointer; font-weight: bold; margin: 10px 5px 0 0;
+        .sidebar-header {
+            padding: 30px 20px;
+            background: var(--blueprint-blue);
+            text-align: center;
         }
-        .btn-action:hover { opacity: 0.9; }
-        .feedback { margin-top: 15px; padding: 10px; border-radius: 5px; font-weight: bold; display: none; }
-        
-        .chapter-link { display: inline-block; margin-top: 20px; color: var(--accent); font-weight: bold; text-decoration: none; }
-        .chapter-link:hover { text-decoration: underline; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { width: 100%; height: auto; }
-            .nav-menu { display: flex; overflow-x: auto; white-space: nowrap; }
+        .sidebar-header h1 { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+
+        .nav-list { flex: 1; overflow-y: auto; padding: 10px 0; }
+        .nav-item {
+            padding: 15px 25px;
+            border-bottom: 1px solid #222;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #aaa;
         }
+        .nav-item:hover { background: #1a1a1a; color: white; }
+        .nav-item.active { 
+            background: var(--construct-orange); 
+            color: white; 
+            font-weight: 600;
+            border-left: 5px solid white;
+        }
+
+        /* Área de Contenido */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        header.top-bar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .progress-bar-wrapper { width: 300px; height: 8px; background: #ddd; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--construct-orange); width: 0%; transition: width 0.5s; }
+
+        .scroll-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 50px;
+            scroll-behavior: smooth;
+        }
+
+        article { max-width: 900px; margin: 0 auto; background: white; padding: 60px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; color: var(--blueprint-blue); border-bottom: 3px solid var(--construct-orange); display: inline-block; }
+        .text-block { line-height: 1.8; font-size: 1.1rem; color: #444; margin-bottom: 40px; text-align: justify; }
+
+        /* Actividades */
+        .activity-card {
+            background: #fff8f5;
+            border: 2px solid #ffdecb;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+        .activity-card h3 { margin-bottom: 20px; color: #d35400; }
+        .options-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
+        .btn-opt {
+            padding: 15px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.2s;
+        }
+        .btn-opt:hover { border-color: var(--construct-orange); background: #fffcfb; }
+        .btn-opt.correct { background: #d4edda; border-color: #28a745; }
+        .btn-opt.wrong { background: #f8d7da; border-color: #dc3545; }
+
+        .chapter-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: var(--blueprint-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        .chapter-link:hover { opacity: 0.9; }
+
+        footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.8rem; color: #999; }
     </style>
 </head>
 <body>
 
     <aside class="sidebar">
         <div class="sidebar-header">
-            <h2>MAQUETAS VOL. 1</h2>
-            <span>Ignacio López Torres</span>
+            <h1>DOMINIO MAQUETAS</h1>
+            <span>Manual Técnico Vol. 1</span>
         </div>
-        <nav class="nav-menu" id="nav-menu">
-            </nav>
+        <nav class="nav-list" id="nav-list"></nav>
     </aside>
 
-    <main class="main-content">
-        <header class="header">
-            <h1 id="display-title">Cargando curso...</h1>
-            <div class="progress-container">
-                <div class="progress-bar" id="progress"></div>
+    <main class="main-container">
+        <header class="top-bar">
+            <div id="breadcrumb">Capítulo 1 / Introducción</div>
+            <div class="progress-bar-wrapper">
+                <div class="progress-fill" id="progress-fill"></div>
             </div>
         </header>
 
-        <section class="view-section">
-            <div class="card" id="theory-card">
-                </div>
-
-            <div class="card activity-box">
-                <h3>🛠️ Actividad Práctica</h3>
-                <div id="activity-area" style="margin-top:15px;">
-                    </div>
-                <div id="feedback" class="feedback"></div>
-            </div>
-
-            <a href="#" id="external-link" class="chapter-link" target="_blank">🔗 Ver recursos adicionales de este capítulo</a>
+        <section class="scroll-area" id="scroll-area">
+            <article id="content-display">
+                </article>
         </section>
     </main>
 
     <script>
-        const content = [
+        const chapters = [
             {
-                id: 1,
-                title: "1. Introducción y Conceptos",
-                theory: "Una maqueta es la representación física, a escala, de un proyecto arquitectónico. Sirve para corregir errores de diseño que no se ven en el dibujo 2D y para comunicar volúmenes de forma efectiva.",
-                activity: "¿Cuál es la principal ventaja de una maqueta sobre un dibujo?",
-                options: ["Es más barata", "Permite ver el volumen real", "No requiere planos"],
+                num: 1,
+                title: "Teoría de la Representación Tridimensional",
+                text: "La maqueta arquitectónica no es simplemente un 'juguete' o una representación estética; es un instrumento de verificación espacial. Según el volumen 1 de Ignacio López Torres, el paso de la bidimensionalidad (el dibujo) a la tridimensionalidad permite detectar errores de escala, conflictos estructurales y problemas de iluminación natural que el ojo humano no procesa correctamente en papel. En este capítulo profundizamos en la psicología del espacio y cómo el cerebro interpreta las proporciones reales versus las proporciones representadas en modelos.",
+                activity: "¿Cuál es la función técnica primordial de la maqueta en la fase de anteproyecto?",
+                options: ["Decorar la oficina del cliente", "Verificar la volumetría y relaciones espaciales reales", "Sustituir por completo a los planos ejecutivos"],
                 correct: 1,
-                link: "https://ejemplo.com/maquetas/cap1"
+                link: "https://biblioteca.arch.edu/cap1-teoria"
             },
             {
-                id: 2,
-                title: "2. Clasificación de Maquetas",
-                theory: "Se dividen principalmente en: Urbanismo (ciudades/terrenos), Edificación (edificios detallados), Interiores (mobiliario/espacios) y Especiales (maquinaria/detalles constructivos).",
-                activity: "¿Qué tipo de maqueta elegirías para mostrar un parque de diversiones completo?",
-                options: ["Interiorismo", "Edificación", "Urbanismo"],
-                correct: 2,
-                link: "https://ejemplo.com/maquetas/cap2"
-            },
-            {
-                id: 3,
-                title: "3. El Taller y Seguridad",
-                theory: "El lugar de trabajo debe tener luz blanca, ventilación y una superficie de corte (vidrio o salvamanteles). La seguridad es primordial: siempre corta hacia afuera, nunca hacia tu mano.",
-                activity: "¿Cuál es la superficie de corte más recomendada para no arruinar la mesa?",
-                options: ["Madera", "Vidrio o tapete de corte", "Plástico suave"],
+                num: 2,
+                title: "Taxonomía y Clasificación Técnica",
+                text: "La clasificación de maquetas se rige por su escala y objetivo. Tenemos maquetas 'Conceptuales' (partido arquitectónico), 'De Trabajo' (estudio de masas) y 'De Presentación' (alto detalle). El autor enfatiza que mezclar escalas de detalle en una misma maqueta es un error de comunicación visual. Por ejemplo, una maqueta de urbanismo a escala 1:500 no debe intentar representar texturas de ladrillo, ya que distorsiona la percepción del conjunto urbano.",
+                activity: "Si necesito estudiar el comportamiento de la luz solar en una habitación, ¿qué tipo de maqueta es la adecuada?",
+                options: ["Maqueta de Urbanismo", "Maqueta de Interiorismo / Espacios", "Maqueta Conceptual"],
                 correct: 1,
-                link: "https://ejemplo.com/maquetas/cap3"
+                link: "https://biblioteca.arch.edu/cap2-clasificacion"
             },
             {
-                id: 4,
-                title: "4. Herramientas de Corte",
-                theory: "Utilizamos cúteres de 30° para precisión y 45° para cortes generales. La regla de acero es indispensable; nunca uses reglas de plástico porque la cuchilla puede subirse y cortarte.",
-                activity: "Pregunta: ¿Por qué no se debe usar una regla de plástico para cortar?",
-                options: ["Se raya", "Es peligroso y el corte sale chueco", "Es muy cara"],
+                num: 3,
+                title: "Ingeniería del Taller: Ergonomía y Seguridad",
+                text: "El taller es un entorno industrial a pequeña escala. Se requiere una iluminación de al menos 500 lux para evitar la fatiga ocular. El autor prescribe el uso de 'Zonas de Corte' y 'Zonas de Pegado' claramente diferenciadas. La seguridad física no es negociable: el uso de protectores metálicos y la técnica de corte 'pulso-alejado' son las bases para evitar accidentes con bisturís de alta precisión.",
+                activity: "¿Qué tipo de iluminación es la normativa para el corte de precisión según el texto?",
+                options: ["Luz cálida y tenue", "Luz blanca/fría de alta intensidad", "Luz solar directa únicamente"],
                 correct: 1,
-                link: "https://ejemplo.com/maquetas/cap4"
+                link: "https://biblioteca.arch.edu/cap3-seguridad"
             },
             {
-                id: 5,
-                title: "5. Materiales Base",
-                theory: "Los materiales más comunes son el papel batería (básico), el cartón pluma (ligero y grueso), y la madera balsa (para acabados realistas). Cada uno requiere un pegamento específico.",
-                activity: "¿Qué material es mejor para representar muros anchos y ligeros?",
-                options: ["Cartón Pluma", "Papel Ilustración", "Acetato"],
-                correct: 0,
-                link: "https://ejemplo.com/maquetas/cap5"
-            },
-            {
-                id: 6,
-                title: "6. Escalas y Medición",
-                theory: "La escala es la proporción. En 1:100, un centímetro representa un metro. Es vital dominar el escalímetro para que la maqueta guarde proporción con la realidad humana.",
-                activity: "Si mi pared mide 3 metros reales, ¿cuánto medirá en escala 1:100?",
-                options: ["30 cm", "3 cm", "0.3 cm"],
+                num: 4,
+                title: "Instrumentación de Corte y Precisión",
+                text: "El dominio del cúter y el bisturí quirúrgico define la calidad del maquetista. Se analizan los ángulos de incidencia: 30 grados para cortes de detalle y 45 grados para desbaste de materiales gruesos. El autor prohíbe el uso de reglas de plástico, ya que el filo puede escalar el borde y causar lesiones graves. La regla de acero inoxidable con respaldo antideslizante es la única herramienta aceptable para la precisión milimétrica.",
+                activity: "¿Por qué se desaconseja el uso de reglas de plástico en el maquetismo profesional?",
+                options: ["Porque son muy ligeras", "Por el riesgo de que la cuchilla salte el borde y corte al usuario", "Porque el plástico mancha el papel batería"],
                 correct: 1,
-                link: "https://ejemplo.com/maquetas/cap6"
+                link: "https://biblioteca.arch.edu/cap4-instrumentacion"
             },
             {
-                id: 7,
-                title: "7. Técnicas de Pegado",
-                theory: "El pegamento blanco es para papel y madera. El pegamento de contacto para grandes superficies. El cianocrilato para uniones instantáneas, pero ¡cuidado con las manchas!",
-                activity: "¿Qué pegamento es ideal para unir madera balsa de forma rápida?",
-                options: ["Lápiz adhesivo", "Pegamento blanco", "Cianocrilato (pegamento rápido)"],
-                correct: 2,
-                link: "https://ejemplo.com/maquetas/cap7"
-            },
-            {
-                id: 8,
-                title: "8. Volúmenes Geométricos",
-                theory: "Todo edificio se descompone en prismas, cubos, cilindros o pirámides. El 'desarrollo' es el dibujo plano de estas figuras que luego se dobla para formar el sólido.",
-                activity: "Para armar un cubo perfecto, ¿cuántas caras cuadradas debe tener mi desarrollo?",
-                options: ["4 caras", "6 caras", "8 caras"],
+                num: 5,
+                title: "Ciencia de los Materiales: Bases y Soportes",
+                text: "El comportamiento higroscópico de los materiales (cómo absorben la humedad) es crítico. El papel batería es el estándar por su neutralidad, pero el cartón pluma (Foam Board) permite crear volúmenes estructurales sin peso. Sin embargo, el Foam Board no soporta pegamentos con solventes fuertes que disuelven su núcleo de poliestireno. El maquetista debe conocer la química de sus materiales antes de iniciar el ensamble.",
+                activity: "¿Qué sucede si aplicas pegamento con solventes fuertes al núcleo del Cartón Pluma?",
+                options: ["Se pega más rápido", "El núcleo se disuelve y la estructura colapsa", "Se vuelve más resistente al fuego"],
                 correct: 1,
-                link: "https://ejemplo.com/maquetas/cap8"
+                link: "https://biblioteca.arch.edu/cap5-materiales"
             },
             {
-                id: 9,
-                title: "9. Acabados y Texturas",
-                theory: "Podemos simular concreto con pintura gris y arena fina, o vidrio usando acetatos transparentes o micas. La textura da el realismo necesario para entender la materialidad.",
-                activity: "¿Qué material usarías para simular las ventanas de un edificio?",
-                options: ["Papel bond", "Acetato transparente", "Cartón"],
+                num: 6,
+                title: "Matemáticas Aplicadas: Escalas y Proporción",
+                text: "La escala es una razón matemática (1:n). Este capítulo aborda la conversión de medidas reales a medidas de modelo utilizando el escalímetro como herramienta de precisión. El autor advierte sobre los 'errores de acumulación': un error de 1mm en escala 1:50 se traduce en 5cm reales, lo cual puede arruinar la validación de un pasillo o una escalera en el modelo físico.",
+                activity: "En un proyecto a escala 1:20, ¿cuántos milímetros representan 10 centímetros reales?",
+                options: ["2 mm", "5 mm", "10 mm"],
                 correct: 1,
-                link: "https://ejemplo.com/maquetas/cap9"
+                link: "https://biblioteca.arch.edu/cap6-escalas"
             },
             {
-                id: 10,
-                title: "10. Vegetación y Entorno",
-                theory: "Los árboles se hacen con alambre y esponja o musgo. El pasto con aserrín teñido o papel terciopelo. La vegetación ayuda a entender la escala humana del proyecto.",
-                activity: "¿Para qué sirve colocar figuras humanas y árboles en la maqueta?",
-                options: ["Para que sea colorida", "Para dar referencia de escala y realismo", "Para ocultar errores"],
+                num: 7,
+                title: "Adhesivos Poliméricos y Química de la Unión",
+                text: "No existe un pegamento universal. El pegamento blanco (PVA) crea puentes de hidrógeno con las fibras del papel, pero su tiempo de secado es lento. El pegamento de contacto es ideal para grandes superficies de chapas de madera, mientras que el cianocrilato es para uniones punto-a-punto de materiales no porosos como el acrílico o metal.",
+                activity: "¿Cuál es la principal ventaja del pegamento de contacto en maquetas de gran formato?",
+                options: ["Es transparente", "Permite la unión instantánea en superficies extensas tras el secado al tacto", "Es inodoro"],
                 correct: 1,
-                link: "https://ejemplo.com/maquetas/cap10"
+                link: "https://biblioteca.arch.edu/cap7-quimica"
+            },
+            {
+                num: 8,
+                title: "Geometría Descriptiva: El Desarrollo de Sólidos",
+                text: "La construcción de volúmenes complejos parte de la geometría descriptiva. El autor enseña a 'desdoblar' edificios en un solo plano para minimizar las juntas pegadas. Reducir el número de piezas individuales mejora la limpieza estética y la integridad estructural de la maqueta. Se analizan técnicas para curvar cartones mediante el 'vencimiento de fibra'.",
+                activity: "¿Cuál es el beneficio de construir un volumen a partir de un solo desarrollo (despliegue)?",
+                options: ["Se gasta más material", "Se obtienen aristas más limpias y mayor resistencia estructural", "Es más fácil de pintar"],
+                correct: 1,
+                link: "https://biblioteca.arch.edu/cap8-geometria"
+            },
+            {
+                num: 9,
+                title: "Representación de la Materialidad (Acabados)",
+                text: "Una maqueta no debe ser literal, sino representativa. Se explican técnicas de texturizado: el uso de lijas para simular asfalto, el rayado de batería para simular entablados de madera y el uso de pinturas acrílicas aplicadas con esponja para efectos de concreto aparente. El autor insiste en que el acabado debe ser sobrio para no distraer de la forma arquitectónica.",
+                activity: "¿Qué técnica recomienda el autor para representar concreto aparente sin usar cemento real?",
+                options: ["Pintar de gris liso con aerosol", "Aplicar capas de gris con esponja para crear porosidad visual", "Pegar papel de lija grueso"],
+                correct: 1,
+                link: "https://biblioteca.arch.edu/cap9-acabados"
+            },
+            {
+                num: 10,
+                title: "Antropometría y Contexto (Paisajismo)",
+                text: "Sin la escala humana, la maqueta pierde su propósito. El capítulo final detalla la fabricación de vegetación artesanal y la importancia de las figuras humanas para dar sentido de proporción. La vegetación debe ser estilizada (usando alambres o espumas) para que no parezca un diorama de juguete, manteniendo siempre el rigor profesional de la representación arquitectónica.",
+                activity: "¿Cuál es el objetivo principal de incluir figuras humanas en un modelo arquitectónico?",
+                options: ["Darle realismo fotográfico", "Establecer una referencia antropométrica de escala y uso del espacio", "Ocultar errores de pegado en el piso"],
+                correct: 1,
+                link: "https://biblioteca.arch.edu/cap10-antropometria"
             }
         ];
 
-        const navMenu = document.getElementById('nav-menu');
-        const displayTitle = document.getElementById('display-title');
-        const theoryCard = document.getElementById('theory-card');
-        const activityArea = document.getElementById('activity-area');
-        const feedback = document.getElementById('feedback');
-        const progress = document.getElementById('progress');
-        const externalLink = document.getElementById('external-link');
+        const navList = document.getElementById('nav-list');
+        const contentDisplay = document.getElementById('content-display');
+        const breadcrumb = document.getElementById('breadcrumb');
+        const progressFill = document.getElementById('progress-fill');
 
         function init() {
-            content.forEach((cap, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'nav-item';
-                btn.innerText = cap.title;
-                btn.onclick = () => loadChapter(index);
-                btn.setAttribute('data-id', index);
-                navMenu.appendChild(btn);
+            chapters.forEach((cap, i) => {
+                const div = document.createElement('div');
+                div.className = `nav-item ${i === 0 ? 'active' : ''}`;
+                div.innerHTML = `<span>Capítulo ${cap.num}: ${cap.title}</span>`;
+                div.onclick = () => loadChapter(i);
+                div.id = `nav-${i}`;
+                navList.appendChild(div);
             });
             loadChapter(0);
         }
 
         function loadChapter(index) {
-            const cap = content[index];
+            const cap = chapters[index];
             
-            // Actualizar UI
-            displayTitle.innerText = cap.title;
-            theoryCard.innerHTML = `<h3>Teoría</h3><p>${cap.theory}</p>`;
-            progress.style.width = `${((index + 1) / content.length) * 100}%`;
-            externalLink.href = cap.link;
-            feedback.style.display = 'none';
+            // Actualizar Navegación
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.getElementById(`nav-${index}`).classList.add('active');
+            
+            // Actualizar Progress y Header
+            breadcrumb.innerText = `Capítulo ${cap.num} / ${cap.title}`;
+            progressFill.style.width = `${((index + 1) / chapters.length) * 100}%`;
 
-            // Cargar Actividad
-            activityArea.innerHTML = `<p>${cap.activity}</p>`;
-            cap.options.forEach((opt, i) => {
-                const btn = document.createElement('button');
-                btn.className = 'btn-action';
-                btn.innerText = opt;
-                btn.onclick = () => checkAnswer(i, cap.correct);
-                activityArea.appendChild(btn);
-            });
+            // Renderizar Contenido
+            contentDisplay.innerHTML = `
+                <h2>Capítulo ${cap.num}: ${cap.title}</h2>
+                <div class="text-block">${cap.text}</div>
+                
+                <div class="activity-card">
+                    <h3>🛠️ Evaluación de Conocimiento</h3>
+                    <p>${cap.activity}</p>
+                    <div class="options-grid">
+                        ${cap.options.map((opt, i) => `
+                            <button class="btn-opt" onclick="checkAnswer(this, ${i}, ${cap.correct})">${opt}</button>
+                        `).join('')}
+                    </div>
+                </div>
 
-            // Active State
-            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[data-id="${index}"]`).classList.add('active');
+                <a href="${cap.link}" target="_blank" class="chapter-link">Descargar Documentación PDF - Cap ${cap.num}</a>
+
+                <footer>
+                    Manual Maquetas Vol 1 - Ignacio López Torres | Plataforma de Estudio Interactiva v2.0
+                </footer>
+            `;
+            document.getElementById('scroll-area').scrollTop = 0;
         }
 
-        function checkAnswer(selected, correct) {
-            feedback.style.display = 'block';
-            if (selected === correct) {
-                feedback.innerText = "¡Correcto! Has dominado este concepto.";
-                feedback.style.background = "#d4edda";
-                feedback.style.color = "#155724";
+        window.checkAnswer = (btn, selected, correct) => {
+            if(selected === correct) {
+                btn.classList.add('correct');
+                btn.innerText += " ✅ (Correcto)";
             } else {
-                feedback.innerText = "Casi... intenta de nuevo revisando la teoría.";
-                feedback.style.background = "#f8d7da";
-                feedback.style.color = "#721c24";
+                btn.classList.add('wrong');
+                btn.innerText += " ❌ (Intenta de nuevo)";
             }
-        }
+        };
 
         init();
     </script>
