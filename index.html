@@ -3,98 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maquetas para Principiantes - Framework Interactivo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Maquetas para Principiantes - Curso Interactivo</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --success: #27ae60;
+            --bg: #f4f7f6;
+            --white: #ffffff;
+            --text: #333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
+
+        /* Sidebar Navigation */
+        .sidebar { width: 320px; background: var(--primary); color: white; display: flex; flex-direction: column; box-shadow: 4px 0 10px rgba(0,0,0,0.2); }
+        .sidebar-header { padding: 25px; text-align: center; border-bottom: 1px solid #3e4f5f; }
+        .sidebar-header h2 { font-size: 1.2rem; letter-spacing: 1px; }
+        .sidebar-header span { color: var(--accent); font-size: 0.8rem; display: block; margin-top: 5px; }
+        
+        .nav-menu { flex: 1; overflow-y: auto; padding: 15px; }
+        .nav-item { 
+            display: block; width: 100%; padding: 12px 15px; margin-bottom: 8px;
+            background: transparent; border: none; color: #bdc3c7; text-align: left;
+            cursor: pointer; border-radius: 6px; transition: 0.3s; text-decoration: none; font-size: 0.95rem;
+        }
+        .nav-item:hover, .nav-item.active { background: var(--accent); color: white; transform: translateX(5px); }
+
+        /* Main Content Area */
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; position: relative; }
+        .header { background: var(--white); padding: 20px 40px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .progress-container { width: 100%; height: 6px; background: #eee; border-radius: 3px; margin-top: 15px; }
+        .progress-bar { height: 100%; background: var(--accent); width: 10%; transition: 0.5s; }
+
+        .view-section { padding: 40px; max-width: 900px; margin: 0 auto; width: 100%; }
+        .card { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        
+        h1 { color: var(--primary); margin-bottom: 15px; }
+        p { line-height: 1.7; margin-bottom: 15px; font-size: 1.05rem; }
+
+        /* Activities */
+        .activity-box { border-left: 5px solid #f39c12; background: #fffdf9; }
+        .btn-action { 
+            background: var(--accent); color: white; border: none; padding: 10px 20px; 
+            border-radius: 5px; cursor: pointer; font-weight: bold; margin: 10px 5px 0 0;
+        }
+        .btn-action:hover { opacity: 0.9; }
+        .feedback { margin-top: 15px; padding: 10px; border-radius: 5px; font-weight: bold; display: none; }
+        
+        .chapter-link { display: inline-block; margin-top: 20px; color: var(--accent); font-weight: bold; text-decoration: none; }
+        .chapter-link:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; }
+            .nav-menu { display: flex; overflow-x: auto; white-space: nowrap; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Maquetas para Principiantes</h1>
-        <p>Volumen I: Teoría y Elaboración - Por Ignacio López Torres</p>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="#cap1">Cap 1: Intro</a></li>
-            <li><a href="#cap2">Cap 2: Tipos</a></li>
-            <li><a href="#cap3">Cap 3: Planos</a></li>
-            <li><a href="#cap4">Cap 4: Materiales</a></li>
-            <li><a href="#cap5">Cap 5: Dibujo</a></li>
-            <li><a href="#cap6">Cap 6: Corte</a></li>
-            <li><a href="#cap7">Cap 7: Escalas</a></li>
-            <li><a href="#cap8">Cap 8: Elaboración</a></li>
-            <li><a href="#cap9">Cap 9: Acabados</a></li>
-            <li><a href="#cap10">Cap 10: Taller</a></li>
-        </ul>
-    </nav>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>MAQUETAS VOL. 1</h2>
+            <span>Ignacio López Torres</span>
+        </div>
+        <nav class="nav-menu" id="nav-menu">
+            </nav>
+    </aside>
 
-    <main>
-        <section id="cap1" class="chapter">
-            <h2>Capítulo I: Introducción a las Maquetas</h2>
-            <div class="theory">
-                <p>Una maqueta es la representación tridimensional a escala de una obra. Sirve como herramienta de diseño y comunicación[cite: 3, 5].</p>
+    <main class="main-content">
+        <header class="header">
+            <h1 id="display-title">Cargando curso...</h1>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress"></div>
             </div>
-            <div class="activity">
-                <button onclick="quiz(1)">Actividad: ¿Cuál es el objetivo principal?</button>
-                <p id="res1" class="hidden">Respuesta: Comunicación y diseño espacial.</p>
-            </div>
-        </section>
+        </header>
 
-        <section id="cap2" class="chapter">
-            <h2>Capítulo II: Tipos de Maquetas</h2>
-            <div class="theory">
-                <p>Existen maquetas de edificación, urbanismo, estructuras, interiores y especiales como las seccionadas o desmontables[cite: 6, 10].</p>
-            </div>
-            <div class="activity">
-                <p>Actividad: Clasifica tu proyecto según su escala y nivel de detalle.</p>
-            </div>
-        </section>
+        <section class="view-section">
+            <div class="card" id="theory-card">
+                </div>
 
-        <section id="cap3" class="chapter">
-            <h2>Capítulo III: Interpretación de Planos</h2>
-            <div class="theory">
-                <p>Es vital reconocer plantas, fachadas y cortes. La vista superior muestra el diseño de la losa o techo[cite: 7, 10].</p>
+            <div class="card activity-box">
+                <h3>🛠️ Actividad Práctica</h3>
+                <div id="activity-area" style="margin-top:15px;">
+                    </div>
+                <div id="feedback" class="feedback"></div>
             </div>
-            <div class="activity">
-                <button onclick="toggleLink('link3')">Ver Guía de Planos</button>
-                <a id="link3" href="#" class="hidden">Enlace a Recurso de Lectura de Planos</a>
-            </div>
-        </section>
 
-        <section id="cap4" class="chapter">
-            <h2>Capítulo IV al VII: Materiales y Técnicas</h2>
-            <div class="theory">
-                <p>Uso de cartón, papel batería y escalas (1:20 a 1:1500). El dibujo técnico es la base del corte[cite: 1, 10, 11].</p>
-            </div>
-        </section>
-
-        <section id="cap8" class="chapter">
-            <h2>Capítulo VIII: Elaboración de Maquetas</h2>
-            <div class="theory">
-                <p>Metodología paso a paso: Selección de planos, trazo, corte de muros y ensamble inicial[cite: 10, 12, 18].</p>
-                            </div>
-            <div class="activity">
-                <p>Práctica: Realiza el trazo de la Fachada Principal en papel ilustración.</p>
-            </div>
-        </section>
-
-        <section id="cap9" class="chapter">
-            <h2>Capítulo IX: Acabados Internos y Externos</h2>
-            <div class="theory">
-                <p>Aplicación de texturas, pintura de muros y representación de jardines con papel terciopelo o aserrín.</p>
-            </div>
-            <div class="activity">
-                <button onclick="alert('Usa aserrín pintado para simular césped.')">Tip de Acabado</button>
-            </div>
-        </section>
-
-        <section id="cap10" class="chapter">
-            <h2>Capítulo X: Organización del Taller</h2>
-            <div class="theory">
-                <p>Un espacio óptimo requiere mesa de trabajo, anaqueles para papel y área de herramientas de corte[cite: 2, 3].</p>
-            </div>
+            <a href="#" id="external-link" class="chapter-link" target="_blank">🔗 Ver recursos adicionales de este capítulo</a>
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        const content = [
+            {
+                id: 1,
+                title: "1. Introducción y Conceptos",
+                theory: "Una maqueta es la representación física, a escala, de un proyecto arquitectónico. Sirve para corregir errores de diseño que no se ven en el dibujo 2D y para comunicar volúmenes de forma efectiva.",
+                activity: "¿Cuál es la principal ventaja de una maqueta sobre un dibujo?",
+                options: ["Es más barata", "Permite ver el volumen real", "No requiere planos"],
+                correct: 1,
+                link: "https://ejemplo.com/maquetas/cap1"
+            },
+            {
+                id: 2,
+                title: "2. Clasificación de Maquetas",
+                theory: "Se dividen principalmente en: Urbanismo (ciudades/terrenos), Edificación (edificios detallados), Interiores (mobiliario/espacios) y Especiales (maquinaria/detalles constructivos).",
+                activity: "¿Qué tipo de maqueta elegirías para mostrar un parque de diversiones completo?",
+                options: ["Interiorismo", "Edificación", "Urbanismo"],
+                correct: 2,
+                link: "https://ejemplo.com/maquetas/cap2"
+            },
+            {
+                id: 3,
+                title: "3. El Taller y Seguridad",
+                theory: "El lugar de trabajo debe tener luz blanca, ventilación y una superficie de corte (vidrio o salvamanteles). La seguridad es primordial: siempre corta hacia afuera, nunca hacia tu mano.",
+                activity: "¿Cuál es la superficie de corte más recomendada para no arruinar la mesa?",
+                options: ["Madera", "Vidrio o tapete de corte", "Plástico suave"],
+                correct: 1,
+                link: "https://ejemplo.com/maquetas/cap3"
+            },
+            {
+                id: 4,
+                title: "4. Herramientas de Corte",
+                theory: "Utilizamos cúteres de 30° para precisión y 45° para cortes generales. La regla de acero es indispensable; nunca uses reglas de plástico porque la cuchilla puede subirse y cortarte.",
+                activity: "Pregunta: ¿Por qué no se debe usar una regla de plástico para cortar?",
+                options: ["Se raya", "Es peligroso y el corte sale chueco", "Es muy cara"],
+                correct: 1,
+                link: "https://ejemplo.com/maquetas/cap4"
+            },
+            {
+                id: 5,
+                title: "5. Materiales Base",
+                theory: "Los materiales más comunes son el papel batería (básico), el cartón pluma (ligero y grueso), y la madera balsa (para acabados realistas). Cada uno requiere un pegamento específico.",
+                activity: "¿Qué material es mejor para representar muros anchos y ligeros?",
+                options: ["Cartón Pluma", "Papel Ilustración", "Acetato"],
+                correct: 0,
+                link: "https://ejemplo.com/maquetas/cap5"
+            },
+            {
+                id: 6,
+                title: "6. Escalas y Medición",
+                theory: "La escala es la proporción. En 1:100, un centímetro representa un metro. Es vital dominar el escalímetro para que la maqueta guarde proporción con la realidad humana.",
+                activity: "Si mi pared mide 3 metros reales, ¿cuánto medirá en escala 1:100?",
+                options: ["30 cm", "3 cm", "0.3 cm"],
+                correct: 1,
+                link: "https://ejemplo.com/maquetas/cap6"
+            },
+            {
+                id: 7,
+                title: "7. Técnicas de Pegado",
+                theory: "El pegamento blanco es para papel y madera. El pegamento de contacto para grandes superficies. El cianocrilato para uniones instantáneas, pero ¡cuidado con las manchas!",
+                activity: "¿Qué pegamento es ideal para unir madera balsa de forma rápida?",
+                options: ["Lápiz adhesivo", "Pegamento blanco", "Cianocrilato (pegamento rápido)"],
+                correct: 2,
+                link: "https://ejemplo.com/maquetas/cap7"
+            },
+            {
+                id: 8,
+                title: "8. Volúmenes Geométricos",
+                theory: "Todo edificio se descompone en prismas, cubos, cilindros o pirámides. El 'desarrollo' es el dibujo plano de estas figuras que luego se dobla para formar el sólido.",
+                activity: "Para armar un cubo perfecto, ¿cuántas caras cuadradas debe tener mi desarrollo?",
+                options: ["4 caras", "6 caras", "8 caras"],
+                correct: 1,
+                link: "https://ejemplo.com/maquetas/cap8"
+            },
+            {
+                id: 9,
+                title: "9. Acabados y Texturas",
+                theory: "Podemos simular concreto con pintura gris y arena fina, o vidrio usando acetatos transparentes o micas. La textura da el realismo necesario para entender la materialidad.",
+                activity: "¿Qué material usarías para simular las ventanas de un edificio?",
+                options: ["Papel bond", "Acetato transparente", "Cartón"],
+                correct: 1,
+                link: "https://ejemplo.com/maquetas/cap9"
+            },
+            {
+                id: 10,
+                title: "10. Vegetación y Entorno",
+                theory: "Los árboles se hacen con alambre y esponja o musgo. El pasto con aserrín teñido o papel terciopelo. La vegetación ayuda a entender la escala humana del proyecto.",
+                activity: "¿Para qué sirve colocar figuras humanas y árboles en la maqueta?",
+                options: ["Para que sea colorida", "Para dar referencia de escala y realismo", "Para ocultar errores"],
+                correct: 1,
+                link: "https://ejemplo.com/maquetas/cap10"
+            }
+        ];
+
+        const navMenu = document.getElementById('nav-menu');
+        const displayTitle = document.getElementById('display-title');
+        const theoryCard = document.getElementById('theory-card');
+        const activityArea = document.getElementById('activity-area');
+        const feedback = document.getElementById('feedback');
+        const progress = document.getElementById('progress');
+        const externalLink = document.getElementById('external-link');
+
+        function init() {
+            content.forEach((cap, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'nav-item';
+                btn.innerText = cap.title;
+                btn.onclick = () => loadChapter(index);
+                btn.setAttribute('data-id', index);
+                navMenu.appendChild(btn);
+            });
+            loadChapter(0);
+        }
+
+        function loadChapter(index) {
+            const cap = content[index];
+            
+            // Actualizar UI
+            displayTitle.innerText = cap.title;
+            theoryCard.innerHTML = `<h3>Teoría</h3><p>${cap.theory}</p>`;
+            progress.style.width = `${((index + 1) / content.length) * 100}%`;
+            externalLink.href = cap.link;
+            feedback.style.display = 'none';
+
+            // Cargar Actividad
+            activityArea.innerHTML = `<p>${cap.activity}</p>`;
+            cap.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-action';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(i, cap.correct);
+                activityArea.appendChild(btn);
+            });
+
+            // Active State
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-id="${index}"]`).classList.add('active');
+        }
+
+        function checkAnswer(selected, correct) {
+            feedback.style.display = 'block';
+            if (selected === correct) {
+                feedback.innerText = "¡Correcto! Has dominado este concepto.";
+                feedback.style.background = "#d4edda";
+                feedback.style.color = "#155724";
+            } else {
+                feedback.innerText = "Casi... intenta de nuevo revisando la teoría.";
+                feedback.style.background = "#f8d7da";
+                feedback.style.color = "#721c24";
+            }
+        }
+
+        init();
+    </script>
 </body>
 </html>
