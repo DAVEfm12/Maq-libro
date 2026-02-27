@@ -8,71 +8,136 @@
         :root {
             --gold: #d4af37;
             --dark-blue: #1a2a3a;
-            --bg-gray: #f4f4f4;
+            --light-blue: #eef2f5;
+            --bg-gray: #f8f9fa;
             --white: #ffffff;
+            --text-color: #333333;
         }
+
         body {
-            font-family: 'Verdana', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
             margin: 0;
             background-color: var(--bg-gray);
         }
+
+        /* Encabezado Principal */
         header {
             background-color: var(--dark-blue);
             color: white;
             text-align: center;
-            padding: 50px 20px;
-            border-bottom: 5px solid var(--gold);
+            padding: 80px 20px;
+            border-bottom: 8px solid var(--gold);
         }
+
+        header p {
+            letter-spacing: 3px;
+            font-weight: 300;
+            margin: 5px 0;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 10px 0;
+            text-transform: uppercase;
+        }
+
+        /* Navegación */
         nav {
             position: sticky;
             top: 0;
             background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 15px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             z-index: 1000;
         }
+
         nav a {
             margin: 5px 15px;
             text-decoration: none;
             color: var(--dark-blue);
-            font-weight: bold;
-            font-size: 0.85em;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: color 0.3s;
         }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Contenedor del Libro */
         .book-container {
-            max-width: 1000px;
-            margin: 30px auto;
+            max-width: 900px;
+            margin: 40px auto;
             background: var(--white);
-            padding: 60px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.05);
+            padding: 80px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.05);
+            border-radius: 4px;
         }
-        h1, h2, h3 { color: var(--dark-blue); }
+
+        h2, h3 { color: var(--dark-blue); }
+
+        /* Títulos de Capítulos */
         .chapter-title {
             text-align: center;
             background: var(--dark-blue);
             color: white;
-            padding: 20px;
-            margin-top: 60px;
-            border-left: 10px solid var(--gold);
+            padding: 40px 20px;
+            margin: 80px -80px 40px -80px;
+            border-left: 15px solid var(--gold);
         }
-        .content-block { margin-bottom: 40px; text-align: justify; }
+
+        .chapter-title h1 { margin: 0; font-size: 1.5em; opacity: 0.8; }
+        .chapter-title h2 { color: white; margin: 10px 0 0 0; font-size: 2.2em; }
+
+        /* Estilos de Contenido */
+        .content-block { 
+            margin-bottom: 25px; 
+            text-align: justify; 
+        }
+
         .quote-box {
-            background: #f9f9f9;
-            border-left: 5px solid var(--gold);
-            padding: 20px;
-            margin: 20px 0;
+            background: var(--light-blue);
+            border-left: 6px solid var(--gold);
+            padding: 30px;
+            margin: 40px 0;
             font-style: italic;
+            font-size: 1.1em;
+            color: #444;
         }
+
+        .tool-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .tool-item strong {
+            color: var(--dark-blue);
+            display: inline-block;
+            width: 250px;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 60px 20px;
             background: var(--dark-blue);
-            color: white;
-            margin-top: 50px;
+            color: #aaa;
+            margin-top: 100px;
+        }
+
+        footer p { margin: 5px 0; font-size: 0.9em; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .book-container { padding: 30px; margin: 10px; }
+            .chapter-title { margin: 40px -30px 20px -30px; }
+            .tool-item strong { width: 100%; display: block; margin-bottom: 5px; }
         }
     </style>
 </head>
@@ -81,26 +146,28 @@
 <header>
     <p>COLECCIÓN DORADA</p>
     <h1>MAQUETAS PARA PRINCIPIANTES</h1>
-    <h3>TEORÍA - ELABORACIÓN - ACABADOS - VEGETACIÓN</h3>
-    <p>AUTOR: IGNACIO LÓPEZ TORRES</p>
+    <h3>TEORÍA • ELABORACIÓN • ACABADOS • VEGETACIÓN</h3>
+    <p>POR: IGNACIO LÓPEZ TORRES</p>
 </header>
 
 <nav>
     <a href="#prologo">PRÓLOGO</a>
-    <a href="#cap1">CAP I: INTRODUCCIÓN</a>
-    <a href="#cap2">CAP II: TIPOS</a>
-    <a href="#cap3">CAP III: PLANOS</a>
-    <a href="#cap4">CAP IV: MATERIALES</a>
-    <a href="#cap5">CAP V: PEGAMENTOS</a>
-    <a href="#cap10">CAP X: VEGETACIÓN</a>
+    <a href="#cap1">CAP I</a>
+    <a href="#cap2">CAP II</a>
+    <a href="#cap3">CAP III</a>
+    <a href="#cap5">CAP V</a>
+    <a href="#cap7">CAP VII</a>
+    <a href="#cap8">CAP VIII</a>
+    <a href="#cap9">CAP IX</a>
+    <a href="#cap10">CAP X</a>
 </nav>
 
 <div class="book-container">
     
     <section id="prologo">
         <h2>PRÓLOGO</h2>
-        <p class="content-block">A pesar de los adelantos tecnológicos, para la elaboración de proyectos, planos, perspectivas, isométricos en forma virtual. No deja de ser necesario para diferentes fines, el conocimiento y la aplicación de técnicas para elaborar maquetas de diferentes tipos y que, hasta los artistas, no dejan de emplear el modelaje en maquetas a escala, para realizarlas a gran escala o escala real, con las correcciones necesarias.</p>
-        <p class="content-block">En la construcción y áreas de mercadotecnia, su empleo es cotidiano, ya que la maqueta es una herramienta indispensable que, nos permite ver los espacios y áreas de una manera total o conjunta, es decir, podemos ver todas las áreas de la maqueta desde una vista área.</p>
+        <p class="content-block">A pesar de los adelantos tecnológicos para la elaboración de proyectos y perspectivas virtuales, el conocimiento de las técnicas para elaborar maquetas físicas sigue siendo esencial. La maqueta es una herramienta indispensable que permite visualizar los espacios de manera total y conjunta desde una vista aérea.</p>
+        <p class="content-block">En la construcción y mercadotecnia, su empleo es cotidiano para corregir errores que no se detectan en el plano bidimensional.</p>
         <p><strong>Arq. Raúl Hernández Castrejón.</strong></p>
     </section>
 
@@ -111,18 +178,18 @@
 
     <section>
         <h3>1.1 ¿QUÉ ES UNA MAQUETA?</h3>
-        <p class="content-block">Es la representación tridimensional, a escala, de una obra compleja. En general, para la construcción de edificios, plantas industriales, barcos, aviones o piezas específicas, se utilizan planos. Los planos son representaciones a escala, en dos dimensiones, de la obra que se pretende construir o se ha construido. En algunos casos, la información que suministran los planos es insuficiente, por lo cual se recurre a las maquetas. Su utilización, desvela problemas constructivos que solo con los planos, no se habrían visto. En los planos, la visión espacial no es intuitiva, en las maquetas sí.</p>
+        <p class="content-block">Es la representación tridimensional, a escala, de una obra compleja. Mientras que los planos son representaciones en dos dimensiones, la maqueta desvela problemas constructivos espaciales que de otra forma no serían intuitivos.</p>
 
-        <h3>1.2 OBJETIVO DE LAS MAQUETAS</h3>
-        <p class="content-block">El objetivo, es implementar en los alumnos con una base conceptual y procedimental que, sin duda no puede ser suficiente sin el complemento insustituible de un desarrollo teórico - práctico en el ámbito del taller de diseño gráfico, arquitectónico, industrial, etc., que de modo individual y en equipo deben de experimentar en la construcción de los diferentes tipos de maquetas.</p>
+        <h3>1.2 OBJETIVO</h3>
+        <p class="content-block">Implementar en el alumno una base conceptual y procedimental. La experiencia en el taller de diseño (gráfico, arquitectónico o industrial) es el complemento insustituible para el desarrollo teórico.</p>
         
         <div class="quote-box">
-            “Las maquetas constituyen excelentes medios didácticos para la enseñanza de diferente disciplinas y asignaturas técnicas, pues nos brindan una representación muy aproximada a la realidad objetiva...” (Pérez, López y González 1998).
+            “Las maquetas constituyen excelentes medios didácticos para la enseñanza de diferentes disciplinas técnicas, pues nos brindan una representación muy aproximada a la realidad objetiva...” <br>— Pérez, López y González (1998).
         </div>
 
-        <h3>1.3 ELEMENTOS QUE COMPONEN UNA MAQUETA</h3>
-        <p><strong>1.3.1 CONCEPTUALES (IDEAS):</strong> Son los elementos que no son visibles, como, por ejemplo: ideas y conceptos de algo que se pretende construir. Estos elementos, principalmente, dependerán de alguna u otra forma de los planos de arquitectura, y de la necesidad del diseñador.</p>
-        <p><strong>1.3.2 VISUALES:</strong> Como su nombre lo indica, son visibles y forman la parte más prominente, de un diseño, porque son los cuales realmente, son visibles... ejemplo; forma, medida, diseño, color, textura, entre otros.</p>
+        <h3>1.3 ELEMENTOS CONCEPTUALES Y VISUALES</h3>
+        <p><strong>1.3.1 CONCEPTUALES:</strong> Ideas y conceptos no visibles que dependen de los planos y la necesidad del diseñador.</p>
+        <p><strong>1.3.2 VISUALES:</strong> La parte prominente del diseño: forma, medida, color y textura.</p>
     </section>
 
     <div id="cap2" class="chapter-title">
@@ -132,169 +199,69 @@
 
     <section>
         <h3>2.1 DE EDIFICACIÓN</h3>
-        <p class="content-block">El grupo de maquetas de edificación, suele subdividirse en: maquetas de urbanismo, de edificios, de estructuras, de espacios interiores y maquetas especiales. El factor más importante a tener en cuenta es la escala, que va a determinar el nivel de detalle de la maqueta.</p>
+        <p class="content-block">Se subdividen en: urbanismo, edificios, estructuras, espacios interiores y especiales. El factor determinante es la escala, que define el nivel de detalle.</p>
         
         <h3>2.1.1 DE URBANISMO</h3>
-        <p class="content-block">Estas maquetas, principalmente, constituyen lo que son las zonas de urbanización, como su nombre lo indica, son maquetas de urbanismo (ciudades o unidades habitacionales), las escalas más usadas, para estas maquetas, por lo regular, no serán 1:500 – 1:1500.</p>
+        <p class="content-block">Representan zonas de urbanización (ciudades o unidades habitacionales). Las escalas más usadas suelen oscilar entre 1:500 y 1:1500.</p>
     </section>
 
+    <div id="cap3" class="chapter-title">
+        <h1>CAPÍTULO III</h1>
+        <h2>INTERPRETACIÓN DE PLANOS</h2>
     </div>
-<div id="cap3" class="chapter-title">
-    <h1>CAPÍTULO III</h1>
-    <h2>INTERPRETACIÓN DE LOS PLANOS ARQUITECTÓNICOS</h2>
-</div>
 
-<section>
-    <p class="content-block">Para la elaboración de maquetas, es fundamental saber interpretar los planos arquitectónicos, ya que ellos son la base de la cual partiremos para dar volumen a nuestra obra.</p>
+    <section>
+        <p class="content-block">Saber interpretar planos es fundamental, ya que son la base para dar volumen a la obra.</p>
+        <h3>3.1 PLANTAS ARQUITECTÓNICAS</h3>
+        <p class="content-block">Representación horizontal que permite ver la distribución de muros, puertas y muebles. Es el plano más importante para el "desplante" inicial.</p>
+        <h3>3.2 FACHADAS Y SECCIONES</h3>
+        <p class="content-block">Las fachadas determinan las alturas externas, mientras que las secciones (cortes) permiten ver entrepisos y escaleras.</p>
+    </section>
 
-    <h3>3.1 PLANTAS ARQUITECTÓNICAS</h3>
-    <p class="content-block">Es la representación de un plano horizontal, el cual nos permite ver la distribución de los espacios interiores y exteriores de una construcción. En ella se detallan muros, puertas, ventanas, muebles, ejes y acotaciones. Es el plano más importante para iniciar el desplante de la maqueta sobre la base.</p>
-
-    <h3>3.2 FACHADAS</h3>
-    <p class="content-block">Las fachadas son las vistas externas de la construcción, representadas de manera frontal, posterior o lateral. Son esenciales para determinar la altura de los muros y la ubicación vertical de ventanas y puertas.</p>
-    
-    <p><strong>3.2.1 PRINCIPAL:</strong> Es la vista de frente de la construcción, donde generalmente se ubica el acceso principal.</p>
-    <p><strong>3.2.2 POSTERIOR:</strong> Es la vista de la parte de atrás de la obra.</p>
-    <p><strong>3.2.3 LATERAL DERECHA E IZQUIERDA:</strong> Son las vistas de los costados de la edificación.</p>
-    <p><strong>3.2.4 VISTA SUPERIOR:</strong> También conocida como planta de techos, nos muestra la forma y pendientes de la cubierta.</p>
-
-    <h3>3.3 SECCIONES</h3>
-    <p class="content-block">Son cortes verticales (longitudinales o transversales) que nos permiten ver el interior de la construcción, alturas de entrepisos, escaleras y detalles estructurales que no son visibles en las fachadas.</p>
-
-    <h3>3.4 ALZADOS</h3>
-    <p class="content-block">Representaciones que muestran la altura y proporciones de los elementos de la edificación respecto al nivel del suelo.</p>
-</section>
     <div id="cap5" class="chapter-title">
-    <h1>CAPÍTULO V</h1>
-    <h2>HERRAMIENTAS NECESARIAS PARA LA ELABORACIÓN DE MAQUETAS</h2>
-</div>
+        <h1>CAPÍTULO V</h1>
+        <h2>HERRAMIENTAS NECESARIAS</h2>
+    </div>
 
-<section>
-    <p class="content-block">Para el desarrollo de cualquier trabajo manual, es indispensable contar con la herramienta adecuada. El uso correcto de estas herramientas no solo facilita el trabajo, sino que garantiza un acabado profesional en la maqueta.</p>
+    <section>
+        <div class="tool-item"><strong>Regla de Aluminio:</strong> Guía de corte que resiste el roce del exacto.</div>
+        <div class="tool-item"><strong>Exacto (Cúter):</strong> Herramienta principal. Debe estar siempre afilada.</div>
+        <div class="tool-item"><strong>Escuadras:</strong> Para asegurar ángulos rectos y alineación.</div>
+        <div class="tool-item"><strong>Limas y Lijas:</strong> Para eliminar rebabas y dar acabados suaves.</div>
+        <div class="tool-item"><strong>Rodillo de Caucho:</strong> Para fijar texturas y adhesivos sin burbujas.</div>
+    </section>
 
-    <h3>5.1 PARA MEDIR Y MARCAR</h3>
-    <p><strong>5.1.1 REGLA DE ALUMINIO:</strong> Es fundamental para realizar trazos rectos y servir de guía en el corte. Se prefiere de aluminio o acero para evitar que el exacto dañe el borde al cortar[cite: 89, 20].</p>
-    <p><strong>5.1.2 REGLA DE PLÁSTICO FLEXIBLE:</strong> Útil para medir superficies curvas o para trazos que no requieren presión de corte[cite: 89].</p>
-    <p><strong>5.1.3 TRANSPORTADOR:</strong> Es un instrumento de medición que nos permite medir ángulos. En maquetas, siempre usamos ángulos por muy sencilla o laboriosa que esta sea... se recomienda utilizar la rosa de los vientos, ya que cuenta con los 360º, lo que ahorra tiempo en la medición[cite: 3].</p>
-    <p><strong>5.1.4 ESCUADRAS:</strong> Estas se utilizan siempre, principalmente, cuando debemos medir ángulos rectos, o simplemente para alinear[cite: 3].</p>
-    <p><strong>5.1.5 COMPÁS DE DOS PUNTAS:</strong> El compás nos permitirá trazar circunferencias que le dan bastante estética a nuestra maqueta. Sus usos son para circunferencias y curvas[cite: 3].</p>
-
-    <h3>5.2 PARA CORTAR Y SEPARAR</h3>
-    <p><strong>5.2.1 EXACTO (CÚTER):</strong> Herramienta principal de corte. Debe mantenerse siempre con una punta afilada para evitar desgarres en el material[cite: 89].</p>
-    <p><strong>5.2.2 EXACTO PARA HACER O CORTAR CÍRCULOS:</strong> Especializado para obtener formas circulares perfectas sin irregularidades manuales[cite: 89].</p>
-    <p><strong>5.2.3 EXACTO (CÚTER) DE 45º:</strong> Se utiliza para realizar cortes en ángulo que permitan uniones perfectas en las esquinas de los muros[cite: 89].</p>
-    <p><strong>5.2.7 ESCUADRA METÁLICA (DE 90º):</strong> Sirve de guía para asegurar que los cortes de los muros sean totalmente perpendiculares[cite: 89].</p>
-
-    <h3>5.3 PARA LIMAR Y FIJAR</h3>
-    <p><strong>5.3.1 JUEGO DE LIMAS FINAS:</strong> Se utilizan para dar el acabado final a los bordes cortados, eliminando rebabas[cite: 89].</p>
-    <p><strong>5.3.3 LIJA PARA MADERA DE AGUA:</strong> Permite un acabado suave en superficies de madera o cartón grueso[cite: 89].</p>
-    <p><strong>5.3.4 LIJA PARA MADERA NORMAL:</strong> Este tipo de lija es más gruesa... se recomienda usar cuando la madera o papel esté muy grueso o áspero[cite: 4].</p>
-
-    <h3>5.4 DE USO GENERAL</h3>
-    <p><strong>5.4.1 MARTILLO:</strong> Herramienta utilizada para golpear un objetivo, causando su desplazamiento o deformación. Su uso más común es para clavar o calzar partes[cite: 4].</p>
-    <p><strong>5.4.2 RODILLO DE CAUCHO:</strong> Se utiliza para presionar uniformemente papeles autoadhesivos o texturas sobre las bases[cite: 4].</p>
-    <p><strong>5.4.3 DESTORNILLADORES:</strong> Su función principal es desatornillar o atornillar, e inclusive sirven para rebajar bordos[cite: 4].</p>
-</section>
     <div id="cap7" class="chapter-title">
-    <h1>CAPÍTULO VII</h1>
-    <h2>ESCALAS Y ACOTACIONES</h2>
-</div>
-
-<section>
-    <p class="content-block">A partir de este capítulo, ya entramos de lleno a la elaboración de maquetas. Los capítulos del 1 al 6 fueron una introducción y desarrollo teórico.</p>
-
-    <h3>7.1 ¿QUÉ ES UNA ESCALA?</h3>
-    <p class="content-block">Es la relación matemática que existe entre las dimensiones reales y las del dibujo que representa la realidad sobre un plano o un mapa. Es la proporción de aumento o disminución que se aplica a un objeto para que pueda ser representado en una superficie.</p>
-
-    <h3>7.2 TIPOS DE ESCALAS</h3>
-    <p><strong>7.2.1 ESCALA NATURAL:</strong> Es cuando el tamaño físico del objeto representado en el plano coincide con la realidad. Se representa como 1:1.</p>
-    <p><strong>7.2.2 ESCALA DE REDUCCIÓN:</strong> Se utiliza cuando el tamaño físico del plano es menor que la realidad. Esta escala se utiliza para representar piezas (E:1:2 o E:1:5), planos de viviendas (E:1:50 o E:1:100), o mapas físicos de territorios (E:1:500 a E:1:50,000).</p>
-    <p><strong>7.2.3 ESCALA DE AMPLIACIÓN:</strong> Se utiliza cuando hay que hacer el plano de piezas muy pequeñas o detalles de un plano. El numerador es más alto que el denominador (E:2:1, E:10:1).</p>
-
-    <h3>7.3 ACOTACIONES</h3>
-    <p class="content-block">La acotación es el proceso de anotar, mediante líneas, cifras, signos y símbolos, las medidas de un objeto, sobre un dibujo previo del mismo, siguiendo una serie de reglas fijas establecidas mediante normas.</p>
-</section>
-    <div id="cap8" class="chapter-title">
-    <h1>CAPÍTULO VIII</h1>
-    <h2>ELABORACIÓN DE MAQUETAS</h2>
-</div>
-
-<section>
-    <h3>8.1 DEFINICIÓN DEL TIPO DE MAQUETA A REALIZAR</h3>
-    <p class="content-block">Antes de iniciar la elaboración de una maqueta, es importante determinar su tipo. Esto nos lo puede dar el cliente, o nosotros mismos lo podemos determinar. La maqueta subordina al dibujo y es una herramienta de comunicación[cite: 6].</p>
-
-    <h3>8.2 RECONOCIMIENTO DE LOS PLANOS DE ARQUITECTURA</h3>
-    <p class="content-block">Es el siguiente punto para iniciar. ¿Por qué se deben reconocer? Porque debemos conocer las fachadas y características de la maqueta[cite: 6].</p>
-
-    <h3>8.4 CARACTERÍSTICAS DE LA MAQUETA</h3>
-    <p class="content-block">Son ellas las que determinan el objetivo y las razones de su elaboración. También podemos determinar la calidad de la maqueta; esta va a depender del material con el cual se pretenda construir[cite: 7].</p>
-
-    <h3>8.8 PROCEDIMIENTO GENERAL DE ELABORACIÓN</h3>
-    <p class="content-block">La maqueta es más que una casita de papel o cartón, es una herramienta de trabajo y comunicación. No es lo mismo explicar en planos que con una maqueta, ya que las personas entienden mejor la idea de la futura obra porque pueden ver cada espacio[cite: 8].</p>
-
-    <p><strong>8.8.7 CORTAR LAS PIEZAS:</strong> Existen dos métodos:</p>
-    <ul>
-        <li><strong>Por partes:</strong> Nos permite hacerlo paso a paso, requiere mucho cuidado y exactitud (recomendado para principiantes)[cite: 9, 10].</li>
-        <li><strong>Por conjuntos:</strong> Es más rápido, pero no es exacto. Se debe tener cuidado al doblar los muros, ya que suelen faltar o sobrar milímetros[cite: 9, 10].</li>
-    </ul>
-
-    <h3>8.8.8 ENSAMBLAR LA MAQUETA</h3>
-    <p class="content-block">El objetivo de esto es ver los errores y detalles que surjan. La maqueta se debe ensamblar, en ningún momento pegar todavía, para corregir detalles de milímetros que surgen al redondear escalas.</p>
-
-    <div class="quote-box">
-        "Cuando se desee fijar la maqueta en la base, no debe de recargarse, pues esto puede ocasionar deformaciones en las partes o piezas"[cite: 5].
+        <h1>CAPÍTULO VII</h1>
+        <h2>ESCALAS Y ACOTACIONES</h2>
     </div>
-</section>
-    <div id="cap9" class="chapter-title">
-    <h1>CAPÍTULO IX</h1>
-    <h2>ACABADOS DE LA MAQUETA</h2>
-</div>
 
-<section>
-    <p class="content-block">En este capítulo, hablaremos de lo que le da la vista final a nuestro trabajo. Los acabados son los detalles que hacen que una maqueta pase de ser un simple modelo volumétrico a una representación realista.</p>
+    <section>
+        <h3>7.1 DEFINICIÓN</h3>
+        <p class="content-block">Relación matemática entre las dimensiones reales y el dibujo. 
+            <br>• <strong>Natural (1:1):</strong> Tamaño real.
+            <br>• <strong>Reducción (1:50, 1:100):</strong> Para representar edificios.
+            <br>• <strong>Ampliación (2:1):</strong> Para detalles muy pequeños.</p>
+    </section>
 
-    <h3>9.1 TEXTURAS</h3>
-    <p class="content-block">Las texturas sirven para representar los materiales reales de construcción como ladrillo, piedra, madera, teja o concreto. Estas pueden ser compradas (láminas pre-impresas) o fabricadas manualmente.</p>
-
-    <h3>9.2 APLICACIÓN DE PINTURA</h3>
-    <p class="content-block">La pintura debe aplicarse con cuidado. Se recomienda el uso de aerosoles para acabados uniformes en superficies grandes y pinceles finos para detalles pequeños. Es vital proteger las áreas que no se desean pintar con cinta de enmascarar (masking tape).</p>
-    
-    <p><strong>9.2.1 PINTURA ACRÍLICA:</strong> Es la más recomendada por su secado rápido y porque no daña la mayoría de los plásticos o espumas.</p>
-    <p><strong>9.2.2 PINTURA EN AEROSOL:</strong> Proporciona un acabado profesional, pero debe aplicarse en capas delgadas para evitar escurrimientos.</p>
-
-    <h3>9.3 AMUEBLADO</h3>
-    <p class="content-block">El amueblado ayuda a dar escala humana a la maqueta. Representar camas, mesas, sillas y sofás permite al espectador entender las dimensiones reales del espacio representado.</p>
-
-    <h3>9.4 CRISTALES Y TRANSPARENCIAS</h3>
-    <p class="content-block">Para representar vidrios o ventanales se utiliza acetato transparente o mica. Para efectos de vidrios polarizados, se puede usar acetato de color o aplicar una capa muy delgada de pintura traslúcida.</p>
-</section>
     <div id="cap10" class="chapter-title">
-    <h1>CAPÍTULO X</h1>
-    <h2>VEGETACIÓN Y ENTORNO</h2>
+        <h1>CAPÍTULO X</h1>
+        <h2>VEGETACIÓN Y ENTORNO</h2>
+    </div>
+
+    <section>
+        <p class="content-block">La vegetación le da vida a la maqueta. Puede ser abstracta (madera o espuma) o realista (alambre y serrín teñido).</p>
+        
+        <h3>10.2 ÁREAS VERDES</h3>
+        <p class="content-block">El serrín teñido es el material rey. Para el agua, se recomienda resina o acetatos azules en degradado.</p>
+
+        <div class="quote-box">
+            "Recuerda que la vegetación no debe opacar la arquitectura, sino complementarla. Menos es más en la mayoría de los casos."
+        </div>
+    </section>
+
 </div>
 
-<section>
-    <p class="content-block">La vegetación es el elemento que le da vida a la maqueta. No solo adorna, sino que ubica el proyecto en un contexto ambiental real.</p>
-
-    <h3>10.1 TIPOS DE ÁRBOLES</h3>
-    <p class="content-block">Existen muchas formas de representar árboles, desde los más abstractos (esferas de unicel o madera) hasta los más realistas.</p>
-    
-    <p><strong>10.1.1 ÁRBOLES DE ALAMBRE:</strong> Se fabrican trenzando hilos de cobre o alambre galvanizado para formar el tronco y las ramas, cubriéndolos luego con pegamento y aserrín teñido.</p>
-    <p><strong>10.1.2 ÁRBOLES DE ESPUMA:</strong> Utilizando esponja picada o musgo natural seco y teñido para simular el follaje.</p>
-
-    <h3>10.2 REPRESENTACIÓN DE ÁREAS VERDES</h3>
-    <p class="content-block">Para el césped o pasto, el material más común es el aserrín teñido de diferentes tonos de verde. También se utiliza el "pasto sintético" que viene en rollos autoadhesivos o en polvo fino para espolvorear sobre pegamento blanco diluido.</p>
-
-    <h3>10.3 REPRESENTACIÓN DE AGUA</h3>
-    <p class="content-block">Para ríos, albercas o fuentes, se puede utilizar resina transparente, aunque para principiantes se recomienda el uso de acetato azul o vidrio martillado colocado sobre un fondo pintado en degradados de azul y verde.</p>
-
-    <h3>10.4 FIGURAS HUMANAS Y VEHÍCULOS</h3>
-    <p class="content-block">Al igual que los muebles, las figuras humanas son esenciales para la escala. Deben guardar la proporción exacta (1:50, 1:100, etc.) para no distorsionar la percepción del tamaño del edificio.</p>
-
-    <div class="quote-box">
-        "Recuerda que la vegetación no debe opacar la arquitectura, sino complementarla. Menos es más en la mayoría de los casos".
-    </div>
-</section>    
 <footer>
     <p>DERECHOS RESERVADOS © 2024 - IGNACIO LÓPEZ TORRES</p>
     <p>Diseño y Diagramación: Lcda. Mirian Beatriz Hernández | ISBN: 978-980-18-4289-7</p>
