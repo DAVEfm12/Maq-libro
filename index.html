@@ -10,14 +10,14 @@
             --dark-space: #121212;
             --blueprint-blue: #00457E;
             --construct-orange: #FF6B35;
-            --glass-white: rgba(255, 255, 255, 0.95);
             --sidebar-width: 320px;
+            --header-height: 70px;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Fira Sans', sans-serif; background: #e0e0e0; display: flex; height: 100vh; color: #333; }
+        body { font-family: 'Fira Sans', sans-serif; background: #f0f0f0; display: flex; height: 100vh; color: #333; overflow: hidden; }
 
-        /* Estructura Sidebar */
+        /* --- SIDEBAR RESPONSIVO --- */
         .sidebar {
             width: var(--sidebar-width);
             background: var(--dark-space);
@@ -25,111 +25,103 @@
             display: flex;
             flex-direction: column;
             box-shadow: 5px 0 15px rgba(0,0,0,0.3);
-            z-index: 100;
+            z-index: 1000;
+            transition: transform 0.3s ease;
         }
 
-        .sidebar-header {
-            padding: 30px 20px;
-            background: var(--blueprint-blue);
-            text-align: center;
-        }
-
-        .sidebar-header h1 { font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+        .sidebar-header { padding: 25px 20px; background: var(--blueprint-blue); text-align: center; }
+        .sidebar-header h1 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
 
         .nav-list { flex: 1; overflow-y: auto; padding: 10px 0; }
         .nav-item {
-            padding: 15px 25px;
+            padding: 15px 20px;
             border-bottom: 1px solid #222;
             cursor: pointer;
             transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #aaa;
         }
         .nav-item:hover { background: #1a1a1a; color: white; }
-        .nav-item.active { 
-            background: var(--construct-orange); 
-            color: white; 
-            font-weight: 600;
-            border-left: 5px solid white;
-        }
+        .nav-item.active { background: var(--construct-orange); color: white; font-weight: 600; border-left: 5px solid white; }
 
-        /* Área de Contenido */
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            background: #f5f5f5;
-        }
+        /* --- CONTENEDOR PRINCIPAL --- */
+        .main-container { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
 
         header.top-bar {
-            height: 70px;
+            height: var(--header-height);
             background: white;
             display: flex;
             align-items: center;
-            padding: 0 40px;
+            padding: 0 20px;
             justify-content: space-between;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 500;
         }
 
-        .progress-bar-wrapper { width: 300px; height: 8px; background: #ddd; border-radius: 4px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--construct-orange); width: 0%; transition: width 0.5s; }
-
-        .scroll-area {
-            flex: 1;
-            overflow-y: auto;
-            padding: 50px;
-            scroll-behavior: smooth;
-        }
-
-        article { max-width: 900px; margin: 0 auto; background: white; padding: 60px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-
-        h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; color: var(--blueprint-blue); border-bottom: 3px solid var(--construct-orange); display: inline-block; }
-        .text-block { line-height: 1.8; font-size: 1.1rem; color: #444; margin-bottom: 40px; text-align: justify; }
-
-        /* Actividades */
-        .activity-card {
-            background: #fff8f5;
-            border: 2px solid #ffdecb;
-            padding: 40px;
-            border-radius: 8px;
-            margin-top: 50px;
-        }
-        .activity-card h3 { margin-bottom: 20px; color: #d35400; }
-        .options-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 20px; }
-        .btn-opt {
-            padding: 15px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            cursor: pointer;
-            text-align: left;
-            transition: 0.2s;
-        }
-        .btn-opt:hover { border-color: var(--construct-orange); background: #fffcfb; }
-        .btn-opt.correct { background: #d4edda; border-color: #28a745; }
-        .btn-opt.wrong { background: #f8d7da; border-color: #dc3545; }
-
-        .chapter-link {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
+        /* Botón Hamburguesa (solo móvil) */
+        .menu-toggle {
+            display: none;
             background: var(--blueprint-blue);
             color: white;
-            text-decoration: none;
+            border: none;
+            padding: 10px;
             border-radius: 4px;
-            font-size: 0.9rem;
+            cursor: pointer;
+            font-size: 1.2rem;
         }
-        .chapter-link:hover { opacity: 0.9; }
 
-        footer { margin-top: 100px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.8rem; color: #999; }
+        .progress-bar-wrapper { width: 150px; height: 8px; background: #ddd; border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--construct-orange); width: 0%; transition: width 0.5s; }
+
+        #breadcrumb { font-size: 0.9rem; font-weight: 600; color: var(--blueprint-blue); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0 10px; }
+
+        /* --- AREA DE SCROLL --- */
+        .scroll-area { flex: 1; overflow-y: auto; padding: 20px; scroll-behavior: smooth; }
+
+        article { max-width: 850px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+
+        h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--blueprint-blue); line-height: 1.2; }
+        .text-block { line-height: 1.7; font-size: 1rem; color: #444; margin-bottom: 30px; text-align: left; }
+
+        /* Actividades */
+        .activity-card { background: #fff8f5; border: 1px solid #ffdecb; padding: 20px; border-radius: 8px; margin-top: 30px; }
+        .activity-card h3 { margin-bottom: 15px; font-size: 1.1rem; color: #d35400; }
+        .options-grid { display: flex; flex-direction: column; gap: 10px; }
+        .btn-opt { padding: 12px; background: white; border: 1px solid #ccc; border-radius: 6px; cursor: pointer; text-align: left; font-size: 0.9rem; }
+        .btn-opt:hover { background: #fffcfb; border-color: var(--construct-orange); }
+        .btn-opt.correct { background: #d4edda !important; border-color: #28a745 !important; }
+        .btn-opt.wrong { background: #f8d7da !important; border-color: #dc3545 !important; }
+
+        .chapter-link { display: inline-block; margin-top: 20px; padding: 12px 20px; background: var(--blueprint-blue); color: white; text-decoration: none; border-radius: 4px; font-size: 0.85rem; width: 100%; text-align: center; }
+
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.75rem; color: #999; text-align: center; }
+
+        /* --- MEDIA QUERIES (RESPONSIVE) --- */
+        @media (max-width: 992px) {
+            .sidebar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                transform: translateX(-100%);
+            }
+            .sidebar.active { transform: translateX(0); }
+            .menu-toggle { display: block; }
+            .progress-bar-wrapper { width: 100px; }
+        }
+
+        @media (max-width: 600px) {
+            article { padding: 20px; }
+            h2 { font-size: 1.4rem; }
+            .top-bar { padding: 0 10px; }
+            #breadcrumb { font-size: 0.75rem; }
+            .scroll-area { padding: 10px; }
+        }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h1>DOMINIO MAQUETAS</h1>
             <span>Manual Técnico Vol. 1</span>
@@ -139,6 +131,7 @@
 
     <main class="main-container">
         <header class="top-bar">
+            <button class="menu-toggle" id="menu-toggle">☰</button>
             <div id="breadcrumb">Capítulo 1 / Introducción</div>
             <div class="progress-bar-wrapper">
                 <div class="progress-fill" id="progress-fill"></div>
@@ -146,18 +139,18 @@
         </header>
 
         <section class="scroll-area" id="scroll-area">
-            <article id="content-display">
-                </article>
+            <article id="content-display"></article>
         </section>
     </main>
 
     <script>
+        // Los datos se mantienen iguales pero con textos extensos
         const chapters = [
             {
                 num: 1,
                 title: "Teoría de la Representación Tridimensional",
-                text: "La maqueta arquitectónica no es simplemente un 'juguete' o una representación estética; es un instrumento de verificación espacial. Según el volumen 1 de Ignacio López Torres, el paso de la bidimensionalidad (el dibujo) a la tridimensionalidad permite detectar errores de escala, conflictos estructurales y problemas de iluminación natural que el ojo humano no procesa correctamente en papel. En este capítulo profundizamos en la psicología del espacio y cómo el cerebro interpreta las proporciones reales versus las proporciones representadas en modelos.",
-                activity: "¿Cuál es la función técnica primordial de la maqueta en la fase de anteproyecto?",
+                text: "La maqueta arquitectónica no es simplemente un 'juguete' o una representación estética; es un instrumento de verificación espacial. Según el volumen 1 de Ignacio López Torres, el paso de la bidimensionalidad (el dibujo) a la tridimensionalidad permite detectar errores de escala, conflictos estructurales y problemas de iluminación natural que el ojo humano no procesa correctamente en papel. En este capítulo profundizamos en la psicología del espacio y cómo el cerebro interpreta las proporciones reales versus las proporciones representadas en modelos físicos, analizando la importancia del volumen sobre la superficie.",
+                activity: "¿Cuál es la función técnica primordial de la maqueta en la fase de anteproyecto según el autor?",
                 options: ["Decorar la oficina del cliente", "Verificar la volumetría y relaciones espaciales reales", "Sustituir por completo a los planos ejecutivos"],
                 correct: 1,
                 link: "https://biblioteca.arch.edu/cap1-teoria"
@@ -165,7 +158,7 @@
             {
                 num: 2,
                 title: "Taxonomía y Clasificación Técnica",
-                text: "La clasificación de maquetas se rige por su escala y objetivo. Tenemos maquetas 'Conceptuales' (partido arquitectónico), 'De Trabajo' (estudio de masas) y 'De Presentación' (alto detalle). El autor enfatiza que mezclar escalas de detalle en una misma maqueta es un error de comunicación visual. Por ejemplo, una maqueta de urbanismo a escala 1:500 no debe intentar representar texturas de ladrillo, ya que distorsiona la percepción del conjunto urbano.",
+                text: "La clasificación de maquetas se rige por su escala y objetivo. Tenemos maquetas 'Conceptuales' para el partido arquitectónico, 'De Trabajo' para el estudio de masas y 'De Presentación' con alto detalle. El autor enfatiza que mezclar escalas de detalle en una misma maqueta es un error de comunicación visual. Por ejemplo, una maqueta de urbanismo a escala 1:500 no debe intentar representar texturas individuales de ladrillo, ya que esto distorsiona la percepción del conjunto urbano y la jerarquía visual del proyecto.",
                 activity: "Si necesito estudiar el comportamiento de la luz solar en una habitación, ¿qué tipo de maqueta es la adecuada?",
                 options: ["Maqueta de Urbanismo", "Maqueta de Interiorismo / Espacios", "Maqueta Conceptual"],
                 correct: 1,
@@ -174,7 +167,7 @@
             {
                 num: 3,
                 title: "Ingeniería del Taller: Ergonomía y Seguridad",
-                text: "El taller es un entorno industrial a pequeña escala. Se requiere una iluminación de al menos 500 lux para evitar la fatiga ocular. El autor prescribe el uso de 'Zonas de Corte' y 'Zonas de Pegado' claramente diferenciadas. La seguridad física no es negociable: el uso de protectores metálicos y la técnica de corte 'pulso-alejado' son las bases para evitar accidentes con bisturís de alta precisión.",
+                text: "El taller es un entorno industrial a pequeña escala. Se requiere una iluminación de al menos 500 lux para evitar la fatiga ocular y garantizar la precisión en los ensambles. El autor prescribe el uso de 'Zonas de Corte' y 'Zonas de Pegado' claramente diferenciadas para evitar manchas accidentales. La seguridad física no es negociable: el uso de protectores metálicos y la técnica de corte 'hacia afuera' son las bases fundamentales para evitar accidentes graves con bisturís de alta precisión.",
                 activity: "¿Qué tipo de iluminación es la normativa para el corte de precisión según el texto?",
                 options: ["Luz cálida y tenue", "Luz blanca/fría de alta intensidad", "Luz solar directa únicamente"],
                 correct: 1,
@@ -183,7 +176,7 @@
             {
                 num: 4,
                 title: "Instrumentación de Corte y Precisión",
-                text: "El dominio del cúter y el bisturí quirúrgico define la calidad del maquetista. Se analizan los ángulos de incidencia: 30 grados para cortes de detalle y 45 grados para desbaste de materiales gruesos. El autor prohíbe el uso de reglas de plástico, ya que el filo puede escalar el borde y causar lesiones graves. La regla de acero inoxidable con respaldo antideslizante es la única herramienta aceptable para la precisión milimétrica.",
+                text: "El dominio del cúter y el bisturí quirúrgico define la calidad del maquetista profesional. Se analizan los ángulos de incidencia: 30 grados para cortes de detalle milimétrico y 45 grados para desbaste de materiales gruesos. El autor prohíbe terminantemente el uso de reglas de plástico para cortar, ya que el filo puede escalar el borde y causar lesiones profundas. La regla de acero inoxidable con respaldo antideslizante es la única herramienta aceptable.",
                 activity: "¿Por qué se desaconseja el uso de reglas de plástico en el maquetismo profesional?",
                 options: ["Porque son muy ligeras", "Por el riesgo de que la cuchilla salte el borde y corte al usuario", "Porque el plástico mancha el papel batería"],
                 correct: 1,
@@ -192,7 +185,7 @@
             {
                 num: 5,
                 title: "Ciencia de los Materiales: Bases y Soportes",
-                text: "El comportamiento higroscópico de los materiales (cómo absorben la humedad) es crítico. El papel batería es el estándar por su neutralidad, pero el cartón pluma (Foam Board) permite crear volúmenes estructurales sin peso. Sin embargo, el Foam Board no soporta pegamentos con solventes fuertes que disuelven su núcleo de poliestireno. El maquetista debe conocer la química de sus materiales antes de iniciar el ensamble.",
+                text: "El comportamiento higroscópico de los materiales (cómo absorben la humedad del ambiente y del pegamento) es crítico para la estabilidad del modelo. El papel batería es el estándar por su neutralidad, pero el cartón pluma (Foam Board) permite crear volúmenes estructurales sin peso excesivo. Sin embargo, el Foam Board no soporta pegamentos con solventes fuertes que disuelven su núcleo de poliestireno, convirtiendo la estructura en una masa amorfa.",
                 activity: "¿Qué sucede si aplicas pegamento con solventes fuertes al núcleo del Cartón Pluma?",
                 options: ["Se pega más rápido", "El núcleo se disuelve y la estructura colapsa", "Se vuelve más resistente al fuego"],
                 correct: 1,
@@ -201,7 +194,7 @@
             {
                 num: 6,
                 title: "Matemáticas Aplicadas: Escalas y Proporción",
-                text: "La escala es una razón matemática (1:n). Este capítulo aborda la conversión de medidas reales a medidas de modelo utilizando el escalímetro como herramienta de precisión. El autor advierte sobre los 'errores de acumulación': un error de 1mm en escala 1:50 se traduce en 5cm reales, lo cual puede arruinar la validación de un pasillo o una escalera en el modelo físico.",
+                text: "La escala es una razón matemática estricta (1:n). Este capítulo aborda la conversión de medidas reales a medidas de modelo utilizando el escalímetro como herramienta de precisión. El autor advierte sobre los 'errores de acumulación': un error de apenas 1mm en escala 1:50 se traduce en 5cm reales, lo cual puede arruinar la validación técnica de un pasillo, una escalera o un vano en el modelo físico final.",
                 activity: "En un proyecto a escala 1:20, ¿cuántos milímetros representan 10 centímetros reales?",
                 options: ["2 mm", "5 mm", "10 mm"],
                 correct: 1,
@@ -210,36 +203,36 @@
             {
                 num: 7,
                 title: "Adhesivos Poliméricos y Química de la Unión",
-                text: "No existe un pegamento universal. El pegamento blanco (PVA) crea puentes de hidrógeno con las fibras del papel, pero su tiempo de secado es lento. El pegamento de contacto es ideal para grandes superficies de chapas de madera, mientras que el cianocrilato es para uniones punto-a-punto de materiales no porosos como el acrílico o metal.",
+                text: "No existe un pegamento universal para maquetas. El pegamento blanco (PVA) crea puentes de hidrógeno fuertes con las fibras del papel, pero su tiempo de secado es lento y puede curvar piezas delgadas. El pegamento de contacto es ideal para grandes superficies de chapas de madera, mientras que el cianocrilato es exclusivo para uniones punto-a-punto de materiales no porosos como el acrílico o metal donde la estética no se vea afectada.",
                 activity: "¿Cuál es la principal ventaja del pegamento de contacto en maquetas de gran formato?",
-                options: ["Es transparente", "Permite la unión instantánea en superficies extensas tras el secado al tacto", "Es inodoro"],
+                options: ["Es totalmente transparente", "Permite la unión instantánea en superficies extensas tras el secado al tacto", "No tiene olor"],
                 correct: 1,
                 link: "https://biblioteca.arch.edu/cap7-quimica"
             },
             {
                 num: 8,
                 title: "Geometría Descriptiva: El Desarrollo de Sólidos",
-                text: "La construcción de volúmenes complejos parte de la geometría descriptiva. El autor enseña a 'desdoblar' edificios en un solo plano para minimizar las juntas pegadas. Reducir el número de piezas individuales mejora la limpieza estética y la integridad estructural de la maqueta. Se analizan técnicas para curvar cartones mediante el 'vencimiento de fibra'.",
+                text: "La construcción de volúmenes complejos parte de la geometría descriptiva. El autor enseña a 'desdoblar' edificios en un solo plano para minimizar las juntas pegadas. Reducir el número de piezas individuales no solo mejora la limpieza estética del modelo, sino que aumenta considerablemente su integridad estructural. Se analizan técnicas para curvar cartones mediante el 'vencimiento de la fibra' de forma controlada.",
                 activity: "¿Cuál es el beneficio de construir un volumen a partir de un solo desarrollo (despliegue)?",
-                options: ["Se gasta más material", "Se obtienen aristas más limpias y mayor resistencia estructural", "Es más fácil de pintar"],
+                options: ["Se ahorra un 50% de pegamento", "Se obtienen aristas más limpias y mayor resistencia estructural", "Es más fácil de pintar con aerosol"],
                 correct: 1,
                 link: "https://biblioteca.arch.edu/cap8-geometria"
             },
             {
                 num: 9,
                 title: "Representación de la Materialidad (Acabados)",
-                text: "Una maqueta no debe ser literal, sino representativa. Se explican técnicas de texturizado: el uso de lijas para simular asfalto, el rayado de batería para simular entablados de madera y el uso de pinturas acrílicas aplicadas con esponja para efectos de concreto aparente. El autor insiste en que el acabado debe ser sobrio para no distraer de la forma arquitectónica.",
-                activity: "¿Qué técnica recomienda el autor para representar concreto aparente sin usar cemento real?",
-                options: ["Pintar de gris liso con aerosol", "Aplicar capas de gris con esponja para crear porosidad visual", "Pegar papel de lija grueso"],
+                text: "Una maqueta no debe ser literal, sino representativa. Se explican técnicas de texturizado profesional: el uso de lijas de agua para simular asfalto, el rayado preciso del papel batería para simular entablados de madera y el uso de pinturas acrílicas aplicadas con esponja para efectos de concreto aparente. El autor insiste en que el acabado debe ser sobrio y monocromático en maquetas de estudio para no distraer de la forma.",
+                activity: "¿Qué técnica recomienda el autor para representar concreto aparente de forma profesional?",
+                options: ["Pintar con spray gris brillante", "Aplicar capas de gris con esponja para crear porosidad visual", "Pegar papel de lija grueso"],
                 correct: 1,
                 link: "https://biblioteca.arch.edu/cap9-acabados"
             },
             {
                 num: 10,
                 title: "Antropometría y Contexto (Paisajismo)",
-                text: "Sin la escala humana, la maqueta pierde su propósito. El capítulo final detalla la fabricación de vegetación artesanal y la importancia de las figuras humanas para dar sentido de proporción. La vegetación debe ser estilizada (usando alambres o espumas) para que no parezca un diorama de juguete, manteniendo siempre el rigor profesional de la representación arquitectónica.",
+                text: "Sin la escala humana, la maqueta arquitectónica pierde su escala de referencia y su propósito. El capítulo final detalla la fabricación de vegetación artesanal y la importancia crítica de las figuras humanas para dar sentido de proporción al espacio. La vegetación debe ser estilizada (usando alambres, musgo o espumas) para que no parezca un juguete, manteniendo siempre el rigor profesional de la representación arquitectónica.",
                 activity: "¿Cuál es el objetivo principal de incluir figuras humanas en un modelo arquitectónico?",
-                options: ["Darle realismo fotográfico", "Establecer una referencia antropométrica de escala y uso del espacio", "Ocultar errores de pegado en el piso"],
+                options: ["Darle un aspecto decorativo", "Establecer una referencia antropométrica de escala y uso del espacio", "Ocultar juntas defectuosas en el piso"],
                 correct: 1,
                 link: "https://biblioteca.arch.edu/cap10-antropometria"
             }
@@ -249,13 +242,23 @@
         const contentDisplay = document.getElementById('content-display');
         const breadcrumb = document.getElementById('breadcrumb');
         const progressFill = document.getElementById('progress-fill');
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+
+        // Toggle Sidebar en móvil
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
 
         function init() {
             chapters.forEach((cap, i) => {
                 const div = document.createElement('div');
                 div.className = `nav-item ${i === 0 ? 'active' : ''}`;
-                div.innerHTML = `<span>Capítulo ${cap.num}: ${cap.title}</span>`;
-                div.onclick = () => loadChapter(i);
+                div.innerHTML = `Capítulo ${cap.num}: ${cap.title}`;
+                div.onclick = () => {
+                    loadChapter(i);
+                    if (window.innerWidth <= 992) sidebar.classList.remove('active');
+                };
                 div.id = `nav-${i}`;
                 navList.appendChild(div);
             });
@@ -264,16 +267,12 @@
 
         function loadChapter(index) {
             const cap = chapters[index];
-            
-            // Actualizar Navegación
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById(`nav-${index}`).classList.add('active');
             
-            // Actualizar Progress y Header
             breadcrumb.innerText = `Capítulo ${cap.num} / ${cap.title}`;
             progressFill.style.width = `${((index + 1) / chapters.length) * 100}%`;
 
-            // Renderizar Contenido
             contentDisplay.innerHTML = `
                 <h2>Capítulo ${cap.num}: ${cap.title}</h2>
                 <div class="text-block">${cap.text}</div>
@@ -288,22 +287,29 @@
                     </div>
                 </div>
 
-                <a href="${cap.link}" target="_blank" class="chapter-link">Descargar Documentación PDF - Cap ${cap.num}</a>
+                <a href="${cap.link}" target="_blank" class="chapter-link">Ver Documentación Completa del Cap ${cap.num}</a>
 
                 <footer>
-                    Manual Maquetas Vol 1 - Ignacio López Torres | Plataforma de Estudio Interactiva v2.0
+                    Manual Maquetas Vol 1 - Ignacio López Torres | Plataforma Educativa Pro
                 </footer>
             `;
             document.getElementById('scroll-area').scrollTop = 0;
         }
 
         window.checkAnswer = (btn, selected, correct) => {
+            const currentOptions = btn.parentElement.querySelectorAll('.btn-opt');
+            currentOptions.forEach(opt => {
+                opt.classList.remove('correct', 'wrong');
+                opt.disabled = true;
+            });
+
             if(selected === correct) {
                 btn.classList.add('correct');
-                btn.innerText += " ✅ (Correcto)";
+                btn.innerText += " ✅";
             } else {
                 btn.classList.add('wrong');
-                btn.innerText += " ❌ (Intenta de nuevo)";
+                btn.innerText += " ❌";
+                currentOptions[correct].classList.add('correct');
             }
         };
 
